@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import logo from "../assets/logo.svg"
 import googleplay from "../assets/google-play.jpg"
 import appstore from "../assets/app-store.jpg"
@@ -8,6 +8,9 @@ import countrylogo from "../assets/sa.svg"
 import { GrCircleQuestion } from "react-icons/gr"
 
 const Navbar = () => {
+
+    const [loginbox, setloginbox] = useState(false)
+
     return (
         <>
             <div className='border-b border-gray-200 h-20 flex items-center justify-center'>
@@ -22,19 +25,21 @@ const Navbar = () => {
                         <div className='p-3'>
                             <img src={countrylogo} />
                         </div>
-                        <div className='p-3 border border-gray-200 rounded-full flex gap-x-2 text-xl ml-3'>
+                        <div className='p-3 border border-gray-200 rounded-full flex gap-x-2 text-xl ml-3' onClick={() => setloginbox(!loginbox)}>
                             <BiSolidUserCircle />
                             <HiMiniBars3 />
                         </div>
                     </div>
-                    <div className='absolute pt-2 px-4 pb-4 bg-white shadow-custom-light mt-2.5 max-w-[360px] w-full right-56 top-16 rounded-lg'>
-                        <button className='mb-4 py-2 px-5 bg-[#FFD03E] text-base text-white text-center font-bold rounded-full w-full'>Sign Up or Log in</button>
-                        <a href='' className='flex items-center gap-x-1 text-base py-4 border-b border-gray-300'><GrCircleQuestion className='text-xl' /><span>Help</span></a>
-                        <div className='flex items-center justify-center gap-x-2 py-4'>
-                            <img src={googleplay} className='w-[150px]'/>
-                            <img src={appstore} className='w-[150px]'/>
-                        </div>
-                    </div>
+                    {
+                        loginbox ? <div className='absolute pt-2 px-4 pb-4 bg-white shadow-custom-light mt-2.5 max-w-[360px] w-full right-56 top-16 rounded-lg'>
+                            <button className='mb-4 py-2 px-5 bg-[#FFD03E] text-base text-white text-center font-bold rounded-full w-full'>Sign Up or Log in</button>
+                            <a href='' className='flex items-center gap-x-1 text-base py-4 border-b border-gray-300'><GrCircleQuestion className='text-xl' /><span>Help</span></a>
+                            <div className='flex items-center justify-center gap-x-2 py-4'>
+                                <img src={googleplay} className='w-[150px]' />
+                                <img src={appstore} className='w-[150px]' />
+                            </div>
+                        </div> : null
+                    }
                 </div>
             </div>
         </>
