@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      maxWidth: {
+        'container': '1140px'
+      },
+      boxShadow: {
+        'custom-light': '0 0 4px #00000040',
+      }
+    },
   },
   plugins: [],
 }
