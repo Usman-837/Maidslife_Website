@@ -3,8 +3,10 @@ import logo from "../assets/logo.svg"
 import googleplay from "../assets/google-play.jpg"
 import appstore from "../assets/app-store.jpg"
 import { HiMiniBars3 } from "react-icons/hi2"
-import { BiSolidUserCircle } from "react-icons/bi"
 import countrylogo from "../assets/sa.svg"
+import aelogo from "../assets/ae.svg"
+import qalogo from "../assets/qa.svg"
+import { BiSolidUserCircle } from "react-icons/bi"
 import { GrCircleQuestion } from "react-icons/gr"
 
 const Navbar = () => {
@@ -30,6 +32,7 @@ const Navbar = () => {
                             <HiMiniBars3 />
                         </div>
                     </div>
+                    {/* Signin and Signup Box */}
                     {
                         loginbox ? <div className='absolute pt-2 px-4 pb-4 bg-white shadow-custom-light mt-2.5 max-w-[360px] w-full right-56 top-16 rounded-lg'>
                             <button className='mb-4 py-2 px-5 bg-[#FFD03E] text-base text-white text-center font-bold rounded-full w-full'>Sign Up or Log in</button>
@@ -40,6 +43,28 @@ const Navbar = () => {
                             </div>
                         </div> : null
                     }
+                    {/* Select Country Box */}
+                    <div className='absolute max-w-64 w-full flex flex-col gap-y-3 p-4 mt-2.5 right-80 top-16 rounded-md bg-white shadow-sm shadow-gray-300'>
+                        <span className='font-bold'>Select Country</span>
+                        <a href=''>
+                            <div className='flex gap-x-2 border border-gray-300 rounded-md py-3 px-2 hover:border-[#79daf9] hover:bg-[#ebf3f5]'>
+                                <img src={aelogo} />
+                                <span className='font-semibold'>United Arab Emirates</span>
+                            </div>
+                        </a>
+                        <a href=''>
+                            <div className='flex gap-x-2 border border-gray-300 rounded-md py-3 px-2 hover:border-[#79daf9] hover:bg-[#ebf3f5]'>
+                                <img src={countrylogo} />
+                                <span className='font-semibold'>Saudia Arabia</span>
+                            </div>
+                        </a>
+                        <a href=''>
+                            <div className='flex gap-x-2 border border-gray-300 rounded-md py-3 px-2 hover:border-[#79daf9] hover:bg-[#ebf3f5]'>
+                                <img src={qalogo} />
+                                <span className='font-semibold'>Qatar</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </>
