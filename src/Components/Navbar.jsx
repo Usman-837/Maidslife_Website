@@ -10,6 +10,10 @@ const Navbar = () => {
                 <div>
                     <img src={logo} />
                 </div>
+                <div className='p-3 border border-gray-200 rounded-full flex gap-x-2 text-xl ml-3'>
+                    <BiSolidUserCircle />
+                    <HiMiniBars3 />
+                </div>
             </div>
         </div>
     )
