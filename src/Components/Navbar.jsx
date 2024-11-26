@@ -12,6 +12,7 @@ import { GrCircleQuestion } from "react-icons/gr"
 const Navbar = () => {
 
     const [loginbox, setloginbox] = useState(false)
+    const [selectcountry, setselectcountry] = useState(false)
 
     return (
         <>
@@ -24,10 +25,10 @@ const Navbar = () => {
                         <p className='p-3 text-xs font-semibold'>
                             العربية
                         </p>
-                        <div className='p-3'>
+                        <div className='p-3' onClick={() => {setselectcountry(!selectcountry), setloginbox(false)}}>
                             <img src={countrylogo} />
                         </div>
-                        <div className='p-3 border border-gray-200 rounded-full flex gap-x-2 text-xl ml-3' onClick={() => setloginbox(!loginbox)}>
+                        <div className='p-3 border border-gray-200 rounded-full flex gap-x-2 text-xl ml-3' onClick={() => {setloginbox(!loginbox), setselectcountry(false)}}>
                             <BiSolidUserCircle />
                             <HiMiniBars3 />
                         </div>
@@ -44,27 +45,29 @@ const Navbar = () => {
                         </div> : null
                     }
                     {/* Select Country Box */}
-                    <div className='absolute max-w-64 w-full flex flex-col gap-y-3 p-4 mt-2.5 right-80 top-16 rounded-md bg-white shadow-sm shadow-gray-300'>
-                        <span className='font-bold'>Select Country</span>
-                        <a href=''>
-                            <div className='flex gap-x-2 border border-gray-300 rounded-md py-3 px-2 hover:border-[#79daf9] hover:bg-[#ebf3f5]'>
-                                <img src={aelogo} />
-                                <span className='font-semibold'>United Arab Emirates</span>
-                            </div>
-                        </a>
-                        <a href=''>
-                            <div className='flex gap-x-2 border border-gray-300 rounded-md py-3 px-2 hover:border-[#79daf9] hover:bg-[#ebf3f5]'>
-                                <img src={countrylogo} />
-                                <span className='font-semibold'>Saudia Arabia</span>
-                            </div>
-                        </a>
-                        <a href=''>
-                            <div className='flex gap-x-2 border border-gray-300 rounded-md py-3 px-2 hover:border-[#79daf9] hover:bg-[#ebf3f5]'>
-                                <img src={qalogo} />
-                                <span className='font-semibold'>Qatar</span>
-                            </div>
-                        </a>
-                    </div>
+                    {
+                        selectcountry ? <div className='absolute max-w-64 w-full flex flex-col gap-y-3 p-4 mt-2.5 right-80 top-16 rounded-md bg-white shadow-sm shadow-gray-300'>
+                            <span className='font-bold'>Select Country</span>
+                            <a href=''>
+                                <div className='flex gap-x-2 border border-gray-300 rounded-md py-3 px-2 hover:border-[#79daf9] hover:bg-[#ebf3f5]'>
+                                    <img src={aelogo} />
+                                    <span className='font-semibold'>United Arab Emirates</span>
+                                </div>
+                            </a>
+                            <a href=''>
+                                <div className='flex gap-x-2 border border-gray-300 rounded-md py-3 px-2 hover:border-[#79daf9] hover:bg-[#ebf3f5]'>
+                                    <img src={countrylogo} />
+                                    <span className='font-semibold'>Saudia Arabia</span>
+                                </div>
+                            </a>
+                            <a href=''>
+                                <div className='flex gap-x-2 border border-gray-300 rounded-md py-3 px-2 hover:border-[#79daf9] hover:bg-[#ebf3f5]'>
+                                    <img src={qalogo} />
+                                    <span className='font-semibold'>Qatar</span>
+                                </div>
+                            </a>
+                        </div> : null
+                    }
                 </div>
             </div>
         </>
