@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       maxWidth: {
-        'container': '1140px'
+        'container': '1140px',
       },
       boxShadow: {
         'custom-light': '0 0 4px #00000040',
