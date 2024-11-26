@@ -17,32 +17,33 @@ const Navbar = () => {
     return (
         <>
             <div className='border-b border-gray-200 h-20 flex items-center justify-center'>
-                <div className='max-w-container w-full flex items-center justify-between'>
+                <div className='max-w-container w-full flex items-center justify-between px-4'>
                     <div>
                         <img src={logo} />
                     </div>
                     <div className='flex items-center'>
-                        <p className='p-3 text-xs font-semibold'>
+                        <p className='p-3 text-xs font-semibold hover:border border-gray-300 rounded-full'>
                             العربية
                         </p>
-                        <div className='p-3' onClick={() => {setselectcountry(!selectcountry), setloginbox(false)}}>
+                        <div className='p-3 hover:border border-gray-300 rounded-full' onClick={() => { setselectcountry(!selectcountry), setloginbox(false) }}>
                             <img src={countrylogo} />
                         </div>
-                        <div className='p-3 border border-gray-200 rounded-full flex gap-x-2 text-xl ml-3' onClick={() => {setloginbox(!loginbox), setselectcountry(false)}}>
+                        <div className='p-3 border border-gray-200 rounded-full flex gap-x-2 text-xl ml-3 hover:bg-gray-100' onClick={() => { setloginbox(!loginbox), setselectcountry(false) }}>
                             <BiSolidUserCircle />
                             <HiMiniBars3 />
                         </div>
                     </div>
                     {/* Signin and Signup Box */}
                     {
-                        loginbox ? <div className='absolute pt-2 px-4 pb-4 bg-white shadow-custom-light mt-2.5 max-w-[360px] w-full right-56 top-16 rounded-lg'>
-                            <button className='mb-4 py-2 px-5 bg-[#FFD03E] text-base text-white text-center font-bold rounded-full w-full'>Sign Up or Log in</button>
-                            <a href='' className='flex items-center gap-x-1 text-base py-4 border-b border-gray-300'><GrCircleQuestion className='text-xl' /><span>Help</span></a>
-                            <div className='flex items-center justify-center gap-x-2 py-4'>
-                                <img src={googleplay} className='w-[150px]' />
-                                <img src={appstore} className='w-[150px]' />
-                            </div>
-                        </div> : null
+                        loginbox ?
+                            <div className='absolute pt-2 px-4 pb-4 bg-white shadow-custom-light mt-2.5 max-w-[360px] w-full right-0 top-16 rounded-lg'>
+                                <button className='mb-4 py-2 px-5 bg-[#FFD03E] text-base text-white text-center font-bold rounded-full w-full'>Sign Up or Log in</button>
+                                <a href='' className='flex items-center gap-x-1 text-base py-4 border-b border-gray-300'><GrCircleQuestion className='text-xl' /><span>Help</span></a>
+                                <div className='flex items-center justify-center gap-x-2 py-4'>
+                                    <img src={googleplay} className='w-[150px]' />
+                                    <img src={appstore} className='w-[150px]' />
+                                </div>
+                            </div> : null
                     }
                     {/* Select Country Box */}
                     {
