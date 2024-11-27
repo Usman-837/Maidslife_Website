@@ -11,6 +11,14 @@ import womensalon from "../assets/women-salon.png"
 import womenspa from "../assets/women-spa.png"
 import menssalon from "../assets/mens-salon.jpg"
 import mensspa from "../assets/mens-spa.png"
+import makeup from "../assets/make-up.webp"
+import haircare from "../assets/hair-care.png"
+import nailextension from "../assets/nail-extensions.jpg"
+import lashesbrows from "../assets/lashes-brows.jpg"
+import spraytanning from "../assets/spray-tanning.jpg"
+import handyman from "../assets/handyman.jpg"
+import homepainting from "../assets/home-painting.jpg"
+import watertank from "../assets/watertank-cleaning.jpg"
 
 
 const Services = () => {
@@ -74,6 +82,46 @@ const Services = () => {
             img: mensspa,
             title: "Men's Spa"
         },
+        {
+            id: 13,
+            img: makeup,
+            title: "Makeup"
+        },
+        {
+            id: 14,
+            img: haircare,
+            title: "Hair Care"
+        },
+        {
+            id: 15,
+            img: nailextension,
+            title: "Nail Extensions"
+        },
+        {
+            id: 16,
+            img: lashesbrows,
+            title: "Lashes and Brows"
+        },
+        {
+            id: 17,
+            img: spraytanning,
+            title: "Spray Tanning"
+        },
+        {
+            id: 18,
+            img: handyman,
+            title: "Handyman & Maintenance"
+        },
+        {
+            id: 19,
+            img: homepainting,
+            title: "Home Painting"
+        },
+        {
+            id: 20,
+            img: watertank,
+            title: "Water Tank Cleaning"
+        }
 
     ]
 
@@ -88,7 +136,7 @@ const Services = () => {
                             <img
                                 src={data.img}
                                 alt={data.title}
-                                className="rounded-full w-52 h-48 object-cover"
+                                className="rounded-full w-40 h-36 object-cover"
                             />
                             <p className="font-bold py-2">{data.title}</p>
                         </div>
