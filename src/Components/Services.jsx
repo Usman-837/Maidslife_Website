@@ -130,15 +130,15 @@ const Services = () => {
             <div className='max-w-container w-full py-12 px-8 text-center'>
                 <h2 className='text-3xl font-bold'>Leave your to-do list to us!</h2>
                 <p className='mt-4 text-lg'>Check out some of our top home services:</p>
-                <div className="pt-12 grid grid-cols-5 gap-6">
+                <div className="pt-12 grid grid-cols-5 gap-6 max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2">
                     {servicescards.map((data) => (
                         <div key={data.id} className="flex flex-col items-center transition ease-out duration-100 z-10">
                             <img
                                 src={data.img}
                                 alt={data.title}
-                                className="rounded-full w-40 h-36 object-cover"
+                                className="rounded-full w-40 h-36 max-md:w-32 max-md:h-32 max-sm:w-24 max-sm:h-24 object-cover"
                             />
-                            <p className="font-bold py-2">{data.title}</p>
+                            <p className="font-bold py-2 max-sm:text-sm">{data.title}</p>
                         </div>
                     ))}
                 </div>
