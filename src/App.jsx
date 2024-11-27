@@ -10,7 +10,7 @@ import Mobileapp from './Components/Mobileapp'
 
 const App = () => {
   return (
-    <div>
+    <>
       <Navbar/>
       <Banner/>
       <Services/>
@@ -18,7 +18,7 @@ const App = () => {
       <Testimonial/>
       <Insurance/>
       <Mobileapp/>
-    </div>
+    </>
   )
 }
 
