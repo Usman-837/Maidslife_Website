@@ -5,47 +5,15 @@ import deepcleaning from "../assets/deep-cleaning.png"
 import accleaning from "../assets/ac-cleaning.jpg"
 import drycleaning from "../assets/dry-cleaning.jpg"
 import carcleaning from "../assets/car-cleaning.jpg"
-import Slider from "react-slick"
+import malecleaning from "../assets/male-cleaning.png"
+import shoecleaning from "../assets/shoe-cleaning.jpg"
+import womensalon from "../assets/women-salon.png"
+import womenspa from "../assets/women-spa.png"
+import menssalon from "../assets/mens-salon.jpg"
+import mensspa from "../assets/mens-spa.png"
+
 
 const Services = () => {
-    var settings = {
-        dots: true,
-        arrows: false,
-        infinite: true,
-        speed: 500,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        cssEase: "linear",
-        pauseOnHover: true,
-        pauseOnFocus: true,
-        responsive: [
-            {
-                breakpoint: 10000,
-                settings: {
-                    slidesToShow: 5,
-                    slidesToScroll: 1,
-                    infinite: true,
-                },
-            },
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
-                    initialSlide: 2,
-                },
-            },
-            {
-                breakpoint: 640,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
-    };
-
 
     const servicescards = [
         {
@@ -77,6 +45,35 @@ const Services = () => {
             img: carcleaning,
             title: "Car Wash at Home"
         },
+        {
+            id: 7,
+            img: malecleaning,
+            title: "Male Cleaning Professionals"
+        },
+        {
+            id: 8,
+            img: shoecleaning,
+            title: "Shoe Cleaning"
+        },
+        {
+            id: 9,
+            img: womensalon,
+            title: "Women's Salon"
+        },
+        {
+            id: 10,
+            img: womenspa,
+            title: "Women's Spa"
+        }, {
+            id: 11,
+            img: menssalon,
+            title: "Premium Men's Salon"
+        },
+        {
+            id: 12,
+            img: mensspa,
+            title: "Men's Spa"
+        },
 
     ]
 
@@ -85,21 +82,17 @@ const Services = () => {
             <div className='max-w-container w-full py-12 px-8 text-center'>
                 <h2 className='text-3xl font-bold'>Leave your to-do list to us!</h2>
                 <p className='mt-4 text-lg'>Check out some of our top home services:</p>
-                 <div className="pt-12">
-                    <Slider {...settings}>
-                        {servicescards.map((data) => (
-                            <div key={data.id} className="w-full px-3">
-                                <div className="flex flex-col items-center transition ease-out duration-100 z-10">
-                                    <img
-                                        src={data.img}
-                                        alt={data.title}
-                                        className="rounded-xl h-40 w-52 object-cover"
-                                    />
-                                    <p className="font-bold py-2">{data.title}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </Slider>
+                <div className="pt-12 grid grid-cols-5 gap-6">
+                    {servicescards.map((data) => (
+                        <div key={data.id} className="flex flex-col items-center transition ease-out duration-100 z-10">
+                            <img
+                                src={data.img}
+                                alt={data.title}
+                                className="rounded-full w-52 h-48 object-cover"
+                            />
+                            <p className="font-bold py-2">{data.title}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>
