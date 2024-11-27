@@ -6,6 +6,7 @@ import Features from './Components/Features'
 import Testimonial from './Components/Testimonial'
 import Insurance from './Components/Insurance'
 import Mobileapp from './Components/Mobileapp'
+import Footer from './Components/Footer'
 
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
       <Testimonial/>
       <Insurance/>
       <Mobileapp/>
+      <Footer/>
     </>
   )
 }
