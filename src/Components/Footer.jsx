@@ -34,7 +34,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className='border-t border-gray-700 mt-6 pt-4 pb-2 grid grid-cols-3 items-center'>
+                <div className='border-t border-gray-700 mt-6 pt-4 pb-2 flex items-center justify-between'>
                     <div className='flex gap-x-4'>
                         <img src={appstore} className='w-32 h-10' />
                         <img src={playstore} className='w-32 h-10' />
@@ -43,6 +43,13 @@ const Footer = () => {
                         <FaFacebook />
                         <FaTwitter />
                         <FaInstagram />
+                    </div>
+                    <div className='text-sm flex gap-x-3'>
+                        <a href='' >F.A.Q</a>
+                        <a href='' >Terms</a>
+                        <a href='' >Privacy</a>
+                        <a href='' >Sitemap</a>
+                        <a href='' >Career</a>
                     </div>
                 </div>
             </div>
