@@ -1,4 +1,10 @@
 import React from 'react'
+import appstore from "../assets/appstore.png"
+import playstore from "../assets/playstore.png"
+import { FaFacebook } from "react-icons/fa"
+import { FaTwitter } from "react-icons/fa"
+import { FaInstagram } from "react-icons/fa"
+
 
 const Footer = () => {
     return (
@@ -28,7 +34,17 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-
+                <div className='border-t border-gray-700 mt-6 pt-4 pb-2 grid grid-cols-3 items-center'>
+                    <div className='flex gap-x-4'>
+                        <img src={appstore} className='w-32 h-10' />
+                        <img src={playstore} className='w-32 h-10' />
+                    </div>
+                    <div className='text-white flex gap-x-5 text-3xl'>
+                        <FaFacebook />
+                        <FaTwitter />
+                        <FaInstagram />
+                    </div>
+                </div>
             </div>
         </div>
     )
