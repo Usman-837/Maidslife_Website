@@ -5,6 +5,8 @@ import Services from './Components/Services'
 import Features from './Components/Features'
 import Testimonial from './Components/Testimonial'
 import Insurance from './Components/Insurance'
+import Mobileapp from './Components/Mobileapp'
+
 
 const App = () => {
   return (
@@ -15,6 +17,7 @@ const App = () => {
       <Features/>
       <Testimonial/>
       <Insurance/>
+      <Mobileapp/>
     </div>
   )
 }
