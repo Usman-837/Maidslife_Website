@@ -4,6 +4,7 @@ import Banner from './Components/Banner'
 import Services from './Components/Services'
 import Features from './Components/Features'
 import Testimonial from './Components/Testimonial'
+import Insurance from './Components/Insurance'
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       <Services/>
       <Features/>
       <Testimonial/>
+      <Insurance/>
     </div>
   )
 }
