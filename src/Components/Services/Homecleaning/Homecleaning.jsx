@@ -15,13 +15,13 @@ const Homecleaning = () => {
     },
     {
       id: 2,
-      title: "Frequency",
-      des: "One Time"
+      title: "Service",
+      des: "Home Cleaning"
     },
     {
       id: 3,
-      title: "Service",
-      des: "Home Cleaning"
+      title: "Service Details",
+      des: "2x Party Cleaning"
     },
     {
       id: 4,
@@ -55,7 +55,7 @@ const Homecleaning = () => {
             </div>
           </header>
           <main className='pb-16'>
-            <div className='flex gap-x-10'>
+            <div className='flex gap-x-6'>
               <div className='bg-white max-w-[558px] w-full border rounded-xl p-6'>
                 <Servicesdetails />
                 {/* Next Button */}
@@ -63,25 +63,36 @@ const Homecleaning = () => {
                   <p className='text-center bg-[#FFD03E] hover:bg-yellow-400 py-3 rounded-full text-white font-bold'>Next</p>
                 </div>
               </div>
-              <div className='bg-white max-w-[364px] w-full h-fit border rounded-xl p-6'>
-                <h4 className='font-bold text-lg'>Booking Details</h4>
-                <div>
-                  {
-                    bookingdetails.map((data) => {
-                      return (
-                        <div className='flex items-center justify-between pb-3'>
-                          <p className='text-[#00000061]'>{data.title}</p>
-                          <p className='text-right'>{data.des}</p>
-                        </div>
-                      )
-                    })
-                  }
+              <div className='flex flex-col w-full gap-y-7'>
+                {/* Booking Details */}
+                <div className='bg-white max-w-[364px] w-full h-fit border rounded-xl p-6'>
+                  <h4 className='font-bold text-lg mb-4'>Booking Details</h4>
+                  <div>
+                    {
+                      bookingdetails.map((data) => {
+                        return (
+                          <div className='flex justify-between pb-3'>
+                            <p className='text-[#00000061]'>{data.title}</p>
+                            <p className='text-right'>{data.des}</p>
+                          </div>
+                        )
+                      })
+                    }
+                  </div>
+                </div>
+                {/* Payment Details */}
+                <div className='bg-white max-w-[364px] w-full h-fit border rounded-xl p-6'>
+                  <h4 className='font-bold text-lg mb-4'>Payment Details</h4>
+                  <div className='flex items-center justify-between pb-3'>
+                    <p className='text-[#00000061]'>Total</p>
+                    <p className='text-right'>AED 55.00</p>
+                  </div>
                 </div>
               </div>
             </div>
           </main>
         </section>
-      </div>
+      </div >
       <Footer />
     </>
   )
