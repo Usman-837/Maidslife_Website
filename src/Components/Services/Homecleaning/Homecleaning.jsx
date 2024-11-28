@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../../Navbar'
 import Footer from '../../Footer'
 import { FaArrowLeft } from "react-icons/fa"
@@ -6,6 +6,17 @@ import { BsInfoCircleFill } from "react-icons/bs"
 
 
 const Homecleaning = () => {
+
+  const [text, setText] = useState('');
+  const charLimit = 150; // Maximum character limit
+
+  const handleChange = (e) => {
+    const inputText = e.target.value;
+
+    if (inputText.length <= charLimit) {
+      setText(inputText); // Allow input only within character limit
+    }
+  };
 
   const Hours = [
     {
@@ -112,6 +123,21 @@ const Homecleaning = () => {
               <div className='flex gap-x-2 pb-9'>
                 <div className='px-4 py-2 border border-gray-500 hover:border-[#00c3ff] rounded-full flex items-center justify-center font-semibold hover:text-[#00c3ff] active:bg-[#d9f6ff]'>No, I have them</div>
                 <div className='px-4 py-2 border border-gray-500 hover:border-[#00c3ff] rounded-full flex items-center justify-center font-semibold hover:text-[#00c3ff] active:bg-[#d9f6ff]'>Yes, Please</div>
+              </div>
+              {/* Instructions */}
+              <div className='pb-4'>
+                <h4 className='font-semibold text-lg'>Any instructions or special requirements?</h4>
+              </div>
+              <div className="relative w-full max-w-lg">
+                <textarea
+                  value={text}
+                  onChange={handleChange}
+                  placeholder="Example: Key under the mat, ironing, window cleaning, etc."
+                  className="w-full h-32 p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-[#00c3ff] resize-none"
+                />
+                <div className="absolute bottom-2 right-4 text-gray-500 text-sm">
+                  {text.length}/{charLimit}
+                </div>
               </div>
             </div>
           </main>
