@@ -42,6 +42,24 @@ const Homecleaning = () => {
     }
   ]
 
+  const Professionals = [
+    {
+      id: 1,
+      prof: "1"
+    },
+    {
+      id: 2,
+      prof: "2"
+    },
+    {
+      id: 3,
+      prof: "3"
+    },
+    {
+      id: 4,
+      prof: "4"
+    }
+  ]
 
   return (
     <>
@@ -59,6 +77,7 @@ const Homecleaning = () => {
           </header>
           <main className='pb-16'>
             <div className='bg-white max-w-[558px] w-full h-80 border rounded-xl p-6'>
+              {/* Hours Selection */}
               <div className='flex items-center gap-x-2 pb-4'>
                 <h4 className='font-semibold text-lg'>How many hours do you need your professional to stay?</h4>
                 <BsInfoCircleFill className='text-gray-600' />
@@ -68,6 +87,20 @@ const Homecleaning = () => {
                   Hours.map((data) => {
                     return (
                       <div className='w-10 h-10 border border-gray-500 hover:border-[#00c3ff] rounded-full flex items-center justify-center font-semibold hover:text-[#00c3ff] active:bg-[#d9f6ff]'>{data.hours}</div>
+                    )
+                  })
+                }
+              </div>
+              {/* Professional Selection */}
+              <div className='flex items-center gap-x-2 pb-4'>
+                <h4 className='font-semibold text-lg'>How many professionals do you need?</h4>
+                <BsInfoCircleFill className='text-gray-600' />
+              </div>
+              <div className='flex gap-x-2 pb-9'>
+                {
+                  Professionals.map((data) => {
+                    return (
+                      <div className='w-10 h-10 border border-gray-500 hover:border-[#00c3ff] rounded-full flex items-center justify-center font-semibold hover:text-[#00c3ff] active:bg-[#d9f6ff]'>{data.prof}</div>
                     )
                   })
                 }
