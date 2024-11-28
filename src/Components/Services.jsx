@@ -19,6 +19,7 @@ import spraytanning from "../assets/spray-tanning.jpg"
 import handyman from "../assets/handyman.jpg"
 import homepainting from "../assets/home-painting.jpg"
 import watertank from "../assets/watertank-cleaning.jpg"
+import { NavLink } from 'react-router-dom'
 
 
 const Services = () => {
@@ -27,100 +28,122 @@ const Services = () => {
         {
             id: 1,
             img: homecleaning,
-            title: "Home cleaning"
+            title: "Home cleaning",
+            path: "/homecleaning"
         },
         {
             id: 2,
             img: furniturecleaning,
-            title: "Furniture Cleaning"
+            title: "Furniture Cleaning",
+            path: "/furniturecleaning"
         },
         {
             id: 3,
             img: deepcleaning,
-            title: "Deep Cleaning"
+            title: "Deep Cleaning",
+            path: "/deepcleaning"
+            
         },
         {
             id: 4,
             img: accleaning,
-            title: "AC Cleaning at Home"
+            title: "AC Cleaning at Home",
+            path: "/accleaningathome"
         }, {
             id: 5,
             img: drycleaning,
-            title: "Laundry and dry Cleaning"
+            title: "Laundry and dry Cleaning",
+            path: "/laundryanddrycleaning"
         },
         {
             id: 6,
             img: carcleaning,
-            title: "Car Wash at Home"
+            title: "Car Wash at Home",
+            path: "/carwashathome"
         },
         {
             id: 7,
             img: malecleaning,
-            title: "Male Cleaning Professionals"
+            title: "Male Cleaning Professionals",
+            path: "/malecleaning"
         },
         {
             id: 8,
             img: shoecleaning,
-            title: "Shoe Cleaning"
+            title: "Shoe Cleaning",
+            path: "/shoecleaning"
         },
         {
             id: 9,
             img: womensalon,
-            title: "Women's Salon"
+            title: "Women's Salon",
+            path: "/womensalon"
         },
         {
             id: 10,
             img: womenspa,
-            title: "Women's Spa"
-        }, {
+            title: "Women's Spa",
+            path: "/womenspa"
+        }, 
+        {
             id: 11,
             img: menssalon,
-            title: "Premium Men's Salon"
+            title: "Premium Men's Salon",
+            path: "/premiummenssalon"
         },
         {
             id: 12,
             img: mensspa,
-            title: "Men's Spa"
+            title: "Men's Spa",
+            path: "/mensspa"
         },
         {
             id: 13,
             img: makeup,
-            title: "Makeup"
+            title: "Makeup",
+            path: "/makeup"
         },
         {
             id: 14,
             img: haircare,
-            title: "Hair Care"
+            title: "Hair Care",
+            path: "/haircare"
         },
         {
             id: 15,
             img: nailextension,
-            title: "Nail Extensions"
+            title: "Nail Extensions",
+            path: "/nailextensions"
         },
         {
             id: 16,
             img: lashesbrows,
-            title: "Lashes and Brows"
+            title: "Lashes and Brows",
+            path: "/lashesandbrows"
         },
         {
             id: 17,
             img: spraytanning,
-            title: "Spray Tanning"
+            title: "Spray Tanning",
+            path: "/spraytanning"
         },
         {
             id: 18,
             img: handyman,
-            title: "Handyman & Maintenance"
+            title: "Handyman & Maintenance",
+            path: "/handyman&maintenance"
         },
         {
             id: 19,
             img: homepainting,
-            title: "Home Painting"
+            title: "Home Painting",
+            path: "/homepainting"
         },
         {
             id: 20,
             img: watertank,
-            title: "Water Tank Cleaning"
+            title: "Water Tank Cleaning",
+            path: "/watertankcleaning"
         }
 
     ]
@@ -133,11 +156,13 @@ const Services = () => {
                 <div className="pt-12 grid grid-cols-5 gap-6 max-lg:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2">
                     {servicescards.map((data) => (
                         <div key={data.id} className="flex flex-col items-center transition ease-out duration-100 z-10">
-                            <img
-                                src={data.img}
-                                alt={data.title}
-                                className="rounded-full w-40 h-36 max-md:w-32 max-md:h-32 max-sm:w-24 max-sm:h-24 object-cover"
-                            />
+                            <NavLink to={data.path} end>
+                                <img
+                                    src={data.img}
+                                    alt={data.title}
+                                    className="rounded-full w-40 h-36 max-md:w-32 max-md:h-32 max-sm:w-24 max-sm:h-24 object-cover"
+                                />
+                            </NavLink>
                             <p className="font-bold py-2 max-sm:text-sm">{data.title}</p>
                         </div>
                     ))}
