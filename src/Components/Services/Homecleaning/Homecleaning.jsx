@@ -76,7 +76,7 @@ const Homecleaning = () => {
             </div>
           </header>
           <main className='pb-16'>
-            <div className='bg-white max-w-[558px] w-full h-80 border rounded-xl p-6'>
+            <div className='bg-white max-w-[558px] w-full border rounded-xl p-6'>
               {/* Hours Selection */}
               <div className='flex items-center gap-x-2 pb-4'>
                 <h4 className='font-semibold text-lg'>How many hours do you need your professional to stay?</h4>
@@ -92,9 +92,8 @@ const Homecleaning = () => {
                 }
               </div>
               {/* Professional Selection */}
-              <div className='flex items-center gap-x-2 pb-4'>
+              <div className='pb-4'>
                 <h4 className='font-semibold text-lg'>How many professionals do you need?</h4>
-                <BsInfoCircleFill className='text-gray-600' />
               </div>
               <div className='flex gap-x-2 pb-9'>
                 {
@@ -104,6 +103,15 @@ const Homecleaning = () => {
                     )
                   })
                 }
+              </div>
+              {/* Cleaning Material Buttons */}
+              <div className='flex items-center gap-x-2 pb-4'>
+                <h4 className='font-semibold text-lg'>Need cleaning materials?</h4>
+                <BsInfoCircleFill className='text-gray-600' />
+              </div>
+              <div className='flex gap-x-2 pb-9'>
+                <div className='px-4 py-2 border border-gray-500 hover:border-[#00c3ff] rounded-full flex items-center justify-center font-semibold hover:text-[#00c3ff] active:bg-[#d9f6ff]'>No, I have them</div>
+                <div className='px-4 py-2 border border-gray-500 hover:border-[#00c3ff] rounded-full flex items-center justify-center font-semibold hover:text-[#00c3ff] active:bg-[#d9f6ff]'>Yes, Please</div>
               </div>
             </div>
           </main>
