@@ -6,7 +6,7 @@ import Services from './Components/Services'
 import Features from './Components/Features'
 import Testimonial from './Components/Testimonial'
 import Footer from './Components/Footer'
-import Homecleaning from './Components/Homecleaning'
+import Homecleaning from './Components/Services/Homecleaning/Homecleaning'
 
 const App = () => {
   const location = useLocation(); // Get current location
