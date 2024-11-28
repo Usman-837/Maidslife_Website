@@ -139,6 +139,10 @@ const Homecleaning = () => {
                   {text.length}/{charLimit}
                 </div>
               </div>
+              {/* Next Button */}
+              <div className='py-6'>
+                <p className='text-center bg-[#FFD03E] hover:bg-yellow-400 py-3 rounded-full text-white font-bold'>Next</p>
+              </div>
             </div>
           </main>
         </section>
