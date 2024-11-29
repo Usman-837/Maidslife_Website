@@ -3,9 +3,12 @@ import Navbar from '../../Navbar'
 import Footer from '../../Footer'
 import { FaArrowLeft } from "react-icons/fa"
 import Servicesdetails from './Servicesdetails'
+import { useSelector } from 'react-redux'
 
 
 const Homecleaning = () => {
+  
+  const { duration, professionals, material } = useSelector((state) => state.booking)
 
   const bookingdetails = [
     {
@@ -26,17 +29,17 @@ const Homecleaning = () => {
     {
       id: 4,
       title: "Duration",
-      des: "1 hour"
+      des: duration
     },
     {
       id: 5,
       title: "Number of Professionals",
-      des: "1"
+      des: professionals
     },
     {
       id: 6,
       title: "Material",
-      des: "No"
+      des: material
     }
   ]
 
