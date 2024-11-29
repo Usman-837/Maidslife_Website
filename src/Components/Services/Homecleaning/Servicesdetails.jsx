@@ -67,7 +67,7 @@ const Servicesdetails = () => {
                     <div
                         key={data.id}
                         className={`w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer
-                            ${activeHour === data.id ? 'bg-[#d9f6ff] border-[#00c3ff] text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
+                            ${activeHour === data.id ? 'bg-[#d9f6ff] border-blue text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
                         onClick={() => handleSetDuration(data.hours, data.id)}
                     >
                         {data.hours}
@@ -84,7 +84,7 @@ const Servicesdetails = () => {
                     <div
                         key={data.id}
                         className={`w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer
-                            ${activeProfessional === data.id ? 'bg-[#d9f6ff] border-[#00c3ff] text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
+                            ${activeProfessional === data.id ? 'bg-[#d9f6ff] border-blue text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
                         onClick={() => handleSetProfessionals(data.prof, data.id)}
                     >
                         {data.prof}
@@ -100,14 +100,14 @@ const Servicesdetails = () => {
             <div className="flex gap-x-2 pb-9">
                 <div
                     className={`px-4 py-2 max-mobile:py-1.5 max-mobile:text-sm border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer
-                        ${activeMaterial === 'No' ? 'bg-[#d9f6ff] border-[#00c3ff] text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
+                        ${activeMaterial === 'No' ? 'border-blue bg-[#d9f6ff] text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
                     onClick={() => handleSetMaterial('No')}
                 >
                     No, I have them
                 </div>
                 <div
                     className={`px-4 py-2 max-mobile:py-1.5 max-mobile:text-sm border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer
-                        ${activeMaterial === 'Yes' ? 'bg-[#d9f6ff] border-[#00c3ff] text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
+                        ${activeMaterial === 'Yes' ? 'border-blue bg-[#d9f6ff] text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
                     onClick={() => handleSetMaterial('Yes')}
                 >
                     Yes, Please

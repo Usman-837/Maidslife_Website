@@ -15,6 +15,9 @@ export default {
       screens: {
         'mobile': '480px',
       },
+      colors: {
+        'blue': '#00c3ff',
+      },
     },
   },
   plugins: [],
