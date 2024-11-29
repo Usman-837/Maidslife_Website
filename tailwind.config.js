@@ -12,6 +12,9 @@ export default {
       boxShadow: {
         'custom-light': '0 0 4px #00000040',
       },
+      screens: {
+        'mobile': '480px',
+      },
     },
   },
   plugins: [],

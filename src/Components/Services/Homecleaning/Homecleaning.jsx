@@ -3,9 +3,12 @@ import Navbar from '../../Navbar'
 import Footer from '../../Footer'
 import { FaArrowLeft } from "react-icons/fa"
 import Servicesdetails from './Servicesdetails'
+import { useSelector } from 'react-redux'
 
 
 const Homecleaning = () => {
+  
+  const { duration, professionals, material } = useSelector((state) => state.booking)
 
   const bookingdetails = [
     {
@@ -26,44 +29,44 @@ const Homecleaning = () => {
     {
       id: 4,
       title: "Duration",
-      des: "1 hour"
+      des: duration
     },
     {
       id: 5,
       title: "Number of Professionals",
-      des: "1"
+      des: professionals
     },
     {
       id: 6,
       title: "Material",
-      des: "No"
+      des: material
     }
   ]
 
   return (
     <>
       <Navbar />
-      <div className='flex items-center justify-center bg-[#fafafa]'>
-        <section className='max-w-container w-full'>
+      <div className='flex items-center justify-center bg-[#fafafa] px-4'>
+        <section className='max-w-container w-full grid justify-center items-center'>
           <header className='py-5'>
             <div className='flex items-center gap-x-3 pb-2'>
-              <FaArrowLeft className='text-xl' />
+              <FaArrowLeft className='text-xl max-mobile:text-lg'/>
               <span className='font-semibold'>Step 1 of 4</span>
             </div>
             <div className='mt-7'>
-              <h2 className='font-semibold text-3xl'>Service Details</h2>
+              <h2 className='font-semibold text-3xl max-mobile:text-2xl'>Service Details</h2>
             </div>
           </header>
           <main className='pb-16'>
-            <div className='flex gap-x-6'>
+            <div className='gap-x-6 grid grid-cols-2 max-md:grid-cols-1'>
               <div className='bg-white max-w-[558px] w-full border rounded-xl p-6'>
                 <Servicesdetails />
                 {/* Next Button */}
                 <div className='py-6'>
-                  <p className='text-center bg-[#FFD03E] hover:bg-yellow-400 py-3 rounded-full text-white font-bold'>Next</p>
+                  <p className='text-center bg-[#FFD03E] hover:bg-yellow-400 py-3 max-mobile:py-2 rounded-full text-white font-bold'>Next</p>
                 </div>
               </div>
-              <div className='flex flex-col w-full gap-y-7'>
+              <div className='flex flex-col w-full gap-y-7 max-md:mt-10'>
                 {/* Booking Details */}
                 <div className='bg-white max-w-[364px] w-full h-fit border rounded-xl p-6'>
                   <h4 className='font-bold text-lg mb-4'>Booking Details</h4>
@@ -71,7 +74,7 @@ const Homecleaning = () => {
                     {
                       bookingdetails.map((data) => {
                         return (
-                          <div className='flex justify-between pb-3'>
+                          <div className='flex justify-between pb-3 max-mobile:text-sm'>
                             <p className='text-[#00000061]'>{data.title}</p>
                             <p className='text-right'>{data.des}</p>
                           </div>
