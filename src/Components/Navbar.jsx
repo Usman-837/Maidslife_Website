@@ -19,16 +19,16 @@ const Navbar = () => {
             <div className='border-b border-gray-200 h-20 flex items-center justify-center'>
                 <div className='max-w-container w-full flex items-center justify-between px-4'>
                     <div>
-                        <img src={logo} className='w-32'/>
+                        <img src={logo} className='w-32 max-mobile:w-24'/>
                     </div>
                     <div className='flex items-center'>
-                        <p className='p-3 text-xs font-semibold hover:border border-gray-300 rounded-full'>
+                        <p className='p-3 text-sm font-semibold hover:border border-gray-300 rounded-full'>
                             العربية
                         </p>
                         <div className='p-3 hover:border border-gray-300 rounded-full' onClick={() => { setselectcountry(!selectcountry), setloginbox(false) }}>
-                            <img src={countrylogo} />
+                            <img src={countrylogo} className='w-6'/>
                         </div>
-                        <div className='p-3 border border-gray-200 rounded-full flex gap-x-2 text-xl ml-3 hover:bg-gray-100' onClick={() => { setloginbox(!loginbox), setselectcountry(false) }}>
+                        <div className='px-3 py-2.5 max-mobile:px-2 max-mobile:py-2 border border-gray-200 rounded-full flex gap-x-2 text-2xl max-mobile:text-xl ml-3 hover:bg-gray-100' onClick={() => { setloginbox(!loginbox), setselectcountry(false) }}>
                             <BiSolidUserCircle />
                             <HiMiniBars3 />
                         </div>
