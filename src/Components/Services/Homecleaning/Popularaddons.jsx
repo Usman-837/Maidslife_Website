@@ -69,18 +69,21 @@ const Popularaddons = () => {
     return (
         <div>
             <h4 className='text-lg font-semibold'>People also added</h4>
-            <Slider {...settings}>
+            <Slider {...settings} className='mt-4 mb-16'>
                 {
                     popularaddonscards.map((data) => {
                         return (
-                            <div className='grid grid-cols-3 mt-5 px-2'>
+                            <div className='grid grid-cols-3 px-2 mb-10 '>
                                 <div key={data.id} className='border rounded-lg hover:border-[#00C3FF]'>
                                     <img src={data.img} className='rounded-t-lg' />
                                     <div className='px-2 py-2'>
                                         <p className='font-semibold'>{data.title}</p>
                                         <p className='text-sm'>{data.des}</p>
                                         <p className='text-[#00C3FF] font-semibold'>Learn more</p>
-                                        <p className='text-sm'>{data.currentprice} <s className='text-gray-400'>{data.previousprice}</s></p>
+                                        <p className='text-sm pb-4'>{data.currentprice} <s className='text-gray-400'>{data.previousprice}</s></p>
+                                    </div>
+                                    <div className='absolute top-[200px] ml-9 text-sm flex items-center justify-center gap-x-1 bg-[#00C3FF] text-white font-bold w-20 rounded-full py-[2px]'>
+                                        <p>ADD</p> <p className='text-xl'>+</p>
                                     </div>
                                 </div>
                             </div>
