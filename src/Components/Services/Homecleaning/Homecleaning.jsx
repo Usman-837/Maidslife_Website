@@ -60,8 +60,11 @@ const Homecleaning = () => {
             <div className='mt-5 font-semibold text-2xl max-mobile:text-2xl'>
               {currentStep === 1 ? (
                 <h2>Service Details</h2>
-              ) : (
+              ) : currentStep === 2 ? (
                 <h2>Popular Add-ons</h2>
+              ) 
+              : (
+                <h2>Date & Time</h2>
               )}
             </div>
           </header>
