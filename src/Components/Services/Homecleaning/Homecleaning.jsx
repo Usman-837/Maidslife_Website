@@ -9,7 +9,7 @@ import { nextStep, prevStep } from '../../../redux/actions/stepActions'
 
 
 const Homecleaning = () => {
-  
+
   const { duration, professionals, material } = useSelector((state) => state.booking)
   const currentStep = useSelector((state) => state.step.currentStep); // Access step state
   const dispatch = useDispatch()
@@ -54,11 +54,15 @@ const Homecleaning = () => {
         <section className='max-w-container w-full grid justify-center items-center'>
           <header className='py-5'>
             <div className='flex items-center gap-x-3 pb-2'>
-              <FaArrowLeft className='text-xl max-mobile:text-lg cursor-pointer' onClick={() => dispatch(prevStep())}/>
+              <FaArrowLeft className='text-xl max-mobile:text-lg cursor-pointer' onClick={() => dispatch(prevStep())} />
               <span className='font-semibold'>Step {currentStep} of 4</span>
             </div>
-            <div className='mt-7'>
-              <h2 className='font-semibold text-3xl max-mobile:text-2xl'>Service Details</h2>
+            <div className='mt-5 font-semibold text-2xl max-mobile:text-2xl'>
+              {currentStep === 1 ? (
+                <h2>Service Details</h2>
+              ) : (
+                <h2>Popular Add-ons</h2>
+              )}
             </div>
           </header>
           <main className='pb-16'>
