@@ -3,12 +3,16 @@ import Navbar from '../../Navbar'
 import Footer from '../../Footer'
 import { FaArrowLeft } from "react-icons/fa"
 import Servicesdetails from './Servicesdetails'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import Popularaddons from './Popularaddons'
+import { nextStep, prevStep } from '../../../redux/actions/stepActions'
 
 
 const Homecleaning = () => {
-  
+
   const { duration, professionals, material } = useSelector((state) => state.booking)
+  const currentStep = useSelector((state) => state.step.currentStep); // Access step state
+  const dispatch = useDispatch()
 
   const bookingdetails = [
     {
@@ -50,20 +54,28 @@ const Homecleaning = () => {
         <section className='max-w-container w-full grid justify-center items-center'>
           <header className='py-5'>
             <div className='flex items-center gap-x-3 pb-2'>
-              <FaArrowLeft className='text-xl max-mobile:text-lg'/>
-              <span className='font-semibold'>Step 1 of 4</span>
+              <FaArrowLeft className='text-xl max-mobile:text-lg cursor-pointer' onClick={() => dispatch(prevStep())} />
+              <span className='font-semibold'>Step {currentStep} of 4</span>
             </div>
-            <div className='mt-7'>
-              <h2 className='font-semibold text-3xl max-mobile:text-2xl'>Service Details</h2>
+            <div className='mt-5 font-semibold text-2xl max-mobile:text-2xl'>
+              {currentStep === 1 ? (
+                <h2>Service Details</h2>
+              ) : currentStep === 2 ? (
+                <h2>Popular Add-ons</h2>
+              ) 
+              : (
+                <h2>Date & Time</h2>
+              )}
             </div>
           </header>
           <main className='pb-16'>
             <div className='gap-x-6 grid grid-cols-2 max-md:grid-cols-1'>
               <div className='bg-white max-w-[558px] w-full border rounded-xl p-6'>
-                <Servicesdetails />
+                {currentStep === 1 && <Servicesdetails />}
+                {currentStep === 2 && <Popularaddons />}
                 {/* Next Button */}
                 <div className='py-6'>
-                  <p className='text-center bg-[#FFD03E] hover:bg-yellow-400 py-3 max-mobile:py-2 rounded-full text-white font-bold'>Next</p>
+                  <p className='text-center bg-[#FFD03E] hover:bg-yellow-400 py-3 max-mobile:py-2 rounded-full text-white font-bold' onClick={() => dispatch(nextStep())}>Next</p>
                 </div>
               </div>
               <div className='flex flex-col w-full gap-y-7 max-md:mt-10'>

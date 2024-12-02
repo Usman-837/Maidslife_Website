@@ -1,10 +1,15 @@
-import { createStore, combineReducers } from 'redux';
-import bookingReducer from './reducers/bookingReducer';
+// src/redux/store.js
+import { configureStore } from "@reduxjs/toolkit";
+import stepReducer from "./reducers/stepReducer";
+import bookingReducer from "./reducers/bookingReducer";
+import popularAddonsReducer from './reducers/popularAddonsReducer';
 
-const rootReducer = combineReducers({
-    booking: bookingReducer,
+const store = configureStore({
+  reducer: {
+    step: stepReducer,       // Step management
+    booking: bookingReducer, // Booking details management
+    popularAddons: popularAddonsReducer, // Add-ons state management
+  },
 });
-
-const store = createStore(rootReducer);
 
 export default store;
