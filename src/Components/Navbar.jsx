@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import logo from "../assets/logo.jpeg"
+import logo from "../assets/logo.jpg"
 import googleplay from "../assets/google-play.jpg"
 import appstore from "../assets/app-store.jpg"
 import { HiMiniBars3 } from "react-icons/hi2"
@@ -19,7 +19,7 @@ const Navbar = () => {
             <div className='border-b border-gray-200 h-20 flex items-center justify-center'>
                 <div className='max-w-container w-full flex items-center justify-between px-4'>
                     <div>
-                        <img src={logo} className='w-32 max-mobile:w-24'/>
+                        <img src={logo} className='w-28 h-16 max-mobile:w-24'/>
                     </div>
                     <div className='flex items-center'>
                         <p className='p-3 text-sm font-semibold hover:border border-gray-300 rounded-full'>
