@@ -9,6 +9,7 @@ import sheryl from "../../../assets/sheryl.webp"
 import { IoStar } from "react-icons/io5"
 import Slider from 'react-slick'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
+import { BsInfoCircleFill } from "react-icons/bs"
 
 const DateTime = () => {
 
@@ -316,6 +317,13 @@ const DateTime = () => {
               ))
             }
           </Slider>
+        </div>
+        {/* Booking cancellation */}
+        <div className='mt-4'> 
+            <div className='flex items-center max-sm:items-start justify-center gap-x-2 bg-gray-100 p-4 rounded-lg h-20'>
+              <BsInfoCircleFill className="text-gray-600 text-md max-mobile:text-2xl" />
+              <p className='text-sm text-gray-500'>Enjoy free cancellation up to 6 hours before your booking start time.</p>
+            </div>
         </div>
       </div>
     </>
