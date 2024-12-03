@@ -6,6 +6,7 @@ import marlyn from "../../../assets/marlyn.webp"
 import grace from "../../../assets/grace.webp"
 import goma from "../../../assets/goma.webp"
 import sheryl from "../../../assets/sheryl.webp"
+import { IoStar } from "react-icons/io5"
 
 const DateTime = () => {
 
@@ -13,30 +14,35 @@ const DateTime = () => {
     {
       id: 1,
       img: phoebe,
+      name: "Phoebe",
       rating: "45",
       des: "Recommended in your area"
     },
     {
       id: 2,
       img: marlyn,
+      name: "Marlyn",
       rating: "45",
       des: "Recommended in your area"
     },
     {
       id: 3,
       img: grace,
+      name: "Grace",
       rating: "45",
       des: "Recommended in your area"
     },
     {
       id: 4,
       img: goma,
+      name: "Goma",
       rating: "45",
       des: "Recommended in your area"
     },
     {
       id: 5,
       img: sheryl,
+      name: "Sheryl",
       rating: "45",
       des: "Recommended in your area"
     }
@@ -61,6 +67,7 @@ const DateTime = () => {
           {/* Professionals */}
           <div>
             <h4 className='text-lg font-semibold'>Which professional do you prefer?</h4>
+            {/* Auto Asign Card */}
             <div className='border rounded-lg hover:border-[#00C3FF] p-4 flex flex-col items-center justify-center mt-4'>
               <img src={autoasignimg} className='rounded-full w-20' />
               <div className='flex flex-col gap-y-8'>
@@ -68,6 +75,20 @@ const DateTime = () => {
                 <p className='text-sm text-[rgba(0,0,0,.6)]'>We'll assign the best professional</p>
               </div>
             </div>
+            {
+              ProfessionalCards.map((data) => {
+                return (
+                  <div key={data.id} className='border rounded-lg hover:border-[#00C3FF] p-4 flex flex-col items-center justify-center mt-4'>
+                    <img src={data.img} className='rounded-full w-20 bg-cover border hover:border-[#00C3FF]' />
+                    <div className='flex flex-col gap-y-2'>
+                      <p className='font-bold text-center pt-2 text-[#00C3FF] underline text-lg'>{data.name}</p>
+                      <p className='text-yellow-400 text-lg flex gap-x-1 items-center justify-center'><IoStar />{data.rating}</p>
+                      <p className='text-sm text-[rgba(0,0,0,.6)]'>{data.des}</p>
+                    </div>
+                  </div>
+                )
+              })
+            }
           </div>
         </div>
       </div>
