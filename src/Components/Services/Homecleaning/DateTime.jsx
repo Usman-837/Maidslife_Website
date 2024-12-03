@@ -133,15 +133,15 @@ const DateTime = () => {
       {
         breakpoint: 993,
         settings: {
-          slidesToShow: 5,
-          slidesToScroll: 5,
+          slidesToShow: 8,
+          slidesToScroll: 8,
         },
       },
       {
         breakpoint: 640,
         settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToShow: 8,
+          slidesToScroll: 8,
         },
       },
     ],
@@ -158,7 +158,7 @@ const DateTime = () => {
             <h4 className='text-lg font-bold'>Frequency</h4>
             <a href='' className='text-[#00C3FF] underline font-semibold'>Change</a>
           </div>
-          <div className='bg-[#00C3FF] text-white flex items-center font-semibold gap-x-2 p-2 rounded-lg w-fit text-sm'>
+          <div className='bg-[#00C3FF] text-white flex items-center font-semibold gap-x-2 p-2 rounded-lg w-fit text-sm max-mobile:text-xs'>
             <LuRefreshCw />
             <p>One Time Service</p>
           </div>
@@ -204,10 +204,10 @@ const DateTime = () => {
             {/* Conditional Left Arrow */}
             {currentSlide > 0 && (
               <div
-                className="absolute top-11 left-[-15px] z-10 -translate-y-1/2 cursor-pointer"
+                className="absolute top-11 max-mobile:top-9 left-[-15px] max-mobile:left-[-12px] z-10 -translate-y-1/2 cursor-pointer"
                 onClick={() => sliderRef.current.slickPrev()}
               >
-                <FaChevronLeft className='text-xl' />
+                <FaChevronLeft className='text-xl max-mobile:text-lg' />
               </div>
             )}
 
@@ -215,8 +215,8 @@ const DateTime = () => {
               {daydatecircle.map((data) => (
                 <div key={data.id} className='flex items-center justify-center gap-x-3'>
                   <div className="flex flex-col items-center">
-                    <p className="font-semibold text-gray-700 pl-1.5">{data.day}</p>
-                    <div className="w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer bg-[#d9f6ff] hover:border-blue hover:text-[#00c3ff]">
+                    <p className="font-semibold text-gray-700 pl-1.5 max-mobile:text-sm">{data.day}</p>
+                    <div className="w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer bg-[#d9f6ff] hover:border-blue hover:text-[#00c3ff] max-mobile:text-sm">
                       {data.date}
                     </div>
                   </div>
@@ -227,10 +227,10 @@ const DateTime = () => {
             {/* Conditional Right Arrow */}
             {currentSlide < totalSlides - 1 && (
               <div
-                className="absolute top-11 right-[-15px] z-10 -translate-y-1/2 cursor-pointer"
+                className="absolute top-11 max-mobile:top-9 right-[-15px] max-mobile:right-[-18px] z-10 -translate-y-1/2 cursor-pointer"
                 onClick={() => sliderRef.current.slickNext()}
               >
-                <FaChevronRight className='text-xl' />
+                <FaChevronRight className='text-xl max-mobile:text-lg' />
               </div>
             )}
           </div>
