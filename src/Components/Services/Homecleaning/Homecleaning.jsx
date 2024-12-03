@@ -5,6 +5,7 @@ import { FaArrowLeft } from "react-icons/fa"
 import Servicesdetails from './Servicesdetails'
 import { useSelector, useDispatch } from 'react-redux'
 import Popularaddons from './Popularaddons'
+import DateTime from "./DateTime"
 import { nextStep, prevStep } from '../../../redux/actions/stepActions'
 
 
@@ -73,6 +74,7 @@ const Homecleaning = () => {
               <div className='bg-white max-w-[558px] w-full border rounded-xl p-6'>
                 {currentStep === 1 && <Servicesdetails />}
                 {currentStep === 2 && <Popularaddons />}
+                {currentStep === 3 && <DateTime/>}
                 {/* Next Button */}
                 <div className='py-6'>
                   <p className='text-center bg-[#FFD03E] hover:bg-yellow-400 py-3 max-mobile:py-2 rounded-full text-white font-bold' onClick={() => dispatch(nextStep())}>Next</p>
