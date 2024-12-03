@@ -73,13 +73,41 @@ const DateTime = () => {
     { id: 16, date: "16", day: "Tue" },
   ];
 
+  const Timecards = [
+    {
+      id: 1,
+      time: "08:00-08:30"
+    },
+    {
+      id: 2,
+      time: "08:00-08:30"
+    },
+    {
+      id: 3,
+      time: "08:00-08:30"
+    },
+    {
+      id: 4,
+      time: "08:00-08:30"
+    },
+    {
+      id: 5,
+      time: "08:00-08:30"
+    },
+    {
+      id: 6,
+      time: "08:00-08:30"
+    }
+  ]
+
+
   var settings = {
     dots: true,
-    arrows: true,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    autoplay: false,
+    autoplay: true,
     autoplaySpeed: 3000,
     cssEase: 'linear',
     pauseOnHover: true,
@@ -149,16 +177,53 @@ const DateTime = () => {
 
   const totalSlides = Math.ceil(daydatecircle.length / slidesToShow);
 
+  var Timesettings = {
+    dots: true,
+    arrows: false,
+    infinite: true,
+    speed: 500,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    cssEase: 'linear',
+    pauseOnHover: true,
+    responsive: [
+      {
+        breakpoint: 10000,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
+
   return (
     <>
       <div className='flex flex-col gap-y-6'>
         {/* Frequency Box */}
-        <div className='flex flex-col gap-2 border border-[#00C3FF] px-5 py-3 rounded-lg bg-[#ebfaff]'>
+        <div className='flex flex-col gap-2 border border-blue px-5 py-3 rounded-lg bg-[#ebfaff]'>
           <div className='flex justify-between'>
             <h4 className='text-lg font-bold'>Frequency</h4>
-            <a href='' className='text-[#00C3FF] underline font-semibold'>Change</a>
+            <a href='' className='text-blue underline font-semibold'>Change</a>
           </div>
-          <div className='bg-[#00C3FF] text-white flex items-center font-semibold gap-x-2 p-2 rounded-lg w-fit text-sm max-mobile:text-xs'>
+          <div className='bg-blue text-white flex items-center font-semibold gap-x-2 p-2 rounded-lg w-fit text-sm max-mobile:text-xs'>
             <LuRefreshCw />
             <p>One Time Service</p>
           </div>
@@ -169,7 +234,7 @@ const DateTime = () => {
           <Slider {...settings} className="my-4 pb-4">
             {/* Auto Assign Card */}
             <div className="flex items-center justify-center h-full px-2">
-              <div className="border rounded-lg hover:border-[#00C3FF] p-4 flex flex-col items-center justify-center">
+              <div className="border rounded-lg hover:border-blue hover:bg-[#d9f6ff] p-4 flex flex-col items-center justify-center">
                 <img src={autoasignimg} className="rounded-full w-20 h-20 object-cover" />
                 <div className="flex flex-col gap-y-12 text-center">
                   <p className="font-semibold text-center pt-2">Auto assign</p>
@@ -180,10 +245,10 @@ const DateTime = () => {
 
             {ProfessionalCards.map((data) => (
               <div key={data.id} className="flex items-center justify-center h-full px-2">
-                <div className="border rounded-lg hover:border-[#00C3FF] group p-4 flex flex-col items-center justify-center">
-                  <img src={data.img} className="rounded-full w-20 h-20 border group-hover:border-[#00C3FF]" />
+                <div className="border rounded-lg hover:border-blue hover:bg-[#d9f6ff] group p-4 flex flex-col items-center justify-center">
+                  <img src={data.img} className="rounded-full w-20 h-20 border group-hover:border-blue" />
                   <div className="flex flex-col gap-y-2 text-center">
-                    <p className="font-semibold pt-2 text-[#00C3FF] underline text-lg">{data.name}</p>
+                    <p className="font-semibold pt-2 text-blue underline text-lg">{data.name}</p>
                     <p className="text-yellow-400 text-lg flex gap-x-1 items-center justify-center">
                       <IoStar />
                       {data.rating}
@@ -216,7 +281,7 @@ const DateTime = () => {
                 <div key={data.id} className='flex items-center justify-center gap-x-3'>
                   <div className="flex flex-col items-center">
                     <p className="font-semibold text-gray-700 pl-1.5 max-mobile:text-sm">{data.day}</p>
-                    <div className="w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer bg-[#d9f6ff] hover:border-blue hover:text-[#00c3ff] max-mobile:text-sm">
+                    <div className="w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer hover:bg-[#d9f6ff] hover:border-blue hover:text-blue max-mobile:text-sm">
                       {data.date}
                     </div>
                   </div>
@@ -234,6 +299,23 @@ const DateTime = () => {
               </div>
             )}
           </div>
+        </div>
+        {/* Time section */}
+        <div>
+          <div className="pb-4">
+            <h4 className="font-semibold text-lg">What time would you like us to start?</h4>
+          </div>
+          <Slider {...Timesettings}>
+            {
+              Timecards.map((data) => (
+                <div key={data.id} className='pb-3'>
+                  <div className="w-fit h-10 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer hover:border-blue hover:text-blue px-4 py-1.5">
+                    {data.time}
+                  </div>
+                </div>
+              ))
+            }
+          </Slider>
         </div>
       </div>
     </>
