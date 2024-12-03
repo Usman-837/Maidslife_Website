@@ -1,4 +1,4 @@
-import React from 'react'
+import Reac, { useRef, useState } from 'react'
 import { LuRefreshCw } from "react-icons/lu"
 import autoasignimg from "../../../assets/funnel-auto-assign-image-logo.svg"
 import phoebe from "../../../assets/phoebe.webp"
@@ -8,8 +8,13 @@ import goma from "../../../assets/goma.webp"
 import sheryl from "../../../assets/sheryl.webp"
 import { IoStar } from "react-icons/io5"
 import Slider from 'react-slick'
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 
 const DateTime = () => {
+
+  const sliderRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slidesToShow = 8;
 
   const ProfessionalCards = [
     {
@@ -50,22 +55,22 @@ const DateTime = () => {
   ]
 
   const daydatecircle = [
-    { id: 1, date: "1" },
-    { id: 2, date: "2" },
-    { id: 3, date: "3" },
-    { id: 4, date: "4" },
-    { id: 5, date: "5" },
-    { id: 6, date: "6" },
-    { id: 7, date: "7" },
-    { id: 8, date: "8" },
-    { id: 9, date: "9" },
-    { id: 10, date: "10" },
-    { id: 11, date: "11" },
-    { id: 12, date: "12" },
-    { id: 13, date: "13" },
-    { id: 14, date: "14" },
-    { id: 15, date: "15" },
-    { id: 16, date: "16" },
+    { id: 1, date: "1", day: "Mon" },
+    { id: 2, date: "2", day: "Tue" },
+    { id: 3, date: "3", day: "Wed" },
+    { id: 4, date: "4", day: "Thu" },
+    { id: 5, date: "5", day: "Fri" },
+    { id: 6, date: "6", day: "Sat" },
+    { id: 7, date: "7", day: "Sun" },
+    { id: 8, date: "8", day: "Mon" },
+    { id: 9, date: "9", day: "Tue" },
+    { id: 10, date: "10", day: "Wed" },
+    { id: 11, date: "11", day: "Thu" },
+    { id: 12, date: "12", day: "Fri" },
+    { id: 13, date: "13", day: "Sat" },
+    { id: 14, date: "14", day: "Sun" },
+    { id: 15, date: "15", day: "Mon" },
+    { id: 16, date: "16", day: "Tue" },
   ];
 
   var settings = {
@@ -104,6 +109,45 @@ const DateTime = () => {
     ],
   };
 
+  const daytimesettings = {
+    dots: false,
+    arrows: false, // Disable default arrows
+    infinite: false, // Disable infinite scroll to handle hiding arrows
+    speed: 500,
+    slidesToScroll: slidesToShow,
+    slidesToShow: slidesToShow,
+    autoplay: false,
+    autoplaySpeed: 3000,
+    cssEase: "linear",
+    pauseOnHover: true,
+    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex), // Track current slide
+    responsive: [
+      {
+        breakpoint: 10000,
+        settings: {
+          slidesToShow: slidesToShow,
+          slidesToScroll: slidesToShow,
+          infinite: false,
+        },
+      },
+      {
+        breakpoint: 993,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 5,
+        },
+      },
+      {
+        breakpoint: 640,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+        },
+      },
+    ],
+  };
+
+  const totalSlides = Math.ceil(daydatecircle.length / slidesToShow);
 
   return (
     <>
@@ -156,18 +200,40 @@ const DateTime = () => {
           <div className="pb-4">
             <h4 className="font-semibold text-lg">When would you like your service?</h4>
           </div>
-          {
-            daydatecircle.map((data) => {
-              return (
-                <div key={data.id}  className="flex flex-col gap-y-1 pb-9">
-                  <p className='font-semibold text-gray-700'>Mon</p>
-                  <div className="w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer bg-[#d9f6ff] hover:border-blue hover:text-[#00c3ff]">
-                    {data.date}
+          <div className="relative">
+            {/* Conditional Left Arrow */}
+            {currentSlide > 0 && (
+              <div
+                className="absolute top-11 left-[-15px] z-10 -translate-y-1/2 cursor-pointer"
+                onClick={() => sliderRef.current.slickPrev()}
+              >
+                <FaChevronLeft className='text-xl' />
+              </div>
+            )}
+
+            <Slider ref={sliderRef} {...daytimesettings}>
+              {daydatecircle.map((data) => (
+                <div key={data.id} className='flex items-center justify-center gap-x-3'>
+                  <div className="flex flex-col items-center">
+                    <p className="font-semibold text-gray-700 pl-1.5">{data.day}</p>
+                    <div className="w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer bg-[#d9f6ff] hover:border-blue hover:text-[#00c3ff]">
+                      {data.date}
+                    </div>
                   </div>
                 </div>
-              )
-            })
-          }
+              ))}
+            </Slider>
+
+            {/* Conditional Right Arrow */}
+            {currentSlide < totalSlides - 1 && (
+              <div
+                className="absolute top-11 right-[-15px] z-10 -translate-y-1/2 cursor-pointer"
+                onClick={() => sliderRef.current.slickNext()}
+              >
+                <FaChevronRight className='text-xl' />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>
