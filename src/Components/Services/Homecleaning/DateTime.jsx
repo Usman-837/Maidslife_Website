@@ -49,6 +49,25 @@ const DateTime = () => {
     }
   ]
 
+  const daydatecircle = [
+    { id: 1, date: "1" },
+    { id: 2, date: "2" },
+    { id: 3, date: "3" },
+    { id: 4, date: "4" },
+    { id: 5, date: "5" },
+    { id: 6, date: "6" },
+    { id: 7, date: "7" },
+    { id: 8, date: "8" },
+    { id: 9, date: "9" },
+    { id: 10, date: "10" },
+    { id: 11, date: "11" },
+    { id: 12, date: "12" },
+    { id: 13, date: "13" },
+    { id: 14, date: "14" },
+    { id: 15, date: "15" },
+    { id: 16, date: "16" },
+  ];
+
   var settings = {
     dots: true,
     arrows: true,
@@ -131,6 +150,24 @@ const DateTime = () => {
               </div>
             ))}
           </Slider>
+        </div>
+        {/* Date and Day */}
+        <div>
+          <div className="pb-4">
+            <h4 className="font-semibold text-lg">When would you like your service?</h4>
+          </div>
+          {
+            daydatecircle.map((data) => {
+              return (
+                <div key={data.id}  className="flex flex-col gap-y-1 pb-9">
+                  <p className='font-semibold text-gray-700'>Mon</p>
+                  <div className="w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer bg-[#d9f6ff] hover:border-blue hover:text-[#00c3ff]">
+                    {data.date}
+                  </div>
+                </div>
+              )
+            })
+          }
         </div>
       </div>
     </>
