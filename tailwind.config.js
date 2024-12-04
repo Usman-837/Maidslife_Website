@@ -14,6 +14,7 @@ export default {
       },
       screens: {
         'mobile': '480px',
+        'smalllaptop': '993px'
       },
       colors: {
         'blue': '#00c3ff',
