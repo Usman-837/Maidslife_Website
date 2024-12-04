@@ -5,6 +5,8 @@ import Banner from './Components/Banner'
 import Services from './Components/Services'
 import Features from './Components/Features'
 import Testimonial from './Components/Testimonial'
+import Insurance from './Components/Insurance'
+import Mobileapp from './Components/Mobileapp'
 import Footer from './Components/Footer'
 import Homecleaning from './Components/Services/Homecleaning/Homecleaning'
 
@@ -35,6 +37,8 @@ const App = () => {
           <Services />
           <Features />
           <Testimonial />
+          <Insurance/>
+          <Mobileapp/>
           <Footer />
         </>
       )}
