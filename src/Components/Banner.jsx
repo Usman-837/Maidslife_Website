@@ -5,7 +5,7 @@ import { MdMyLocation } from "react-icons/md"
 
 const Banner = () => {
     return (
-        <div className="bg-cover h-96 min-h-[583px] flex flex-col gap-y-6 items-center justify-center max-sm:px-3" // Add height or other classes as needed
+        <div className="bg-cover h-96 min-h-[583px] flex flex-col gap-y-6 items-center justify-center max-sm:px-3 mt-20" // Add height or other classes as needed
             style={{
                 backgroundImage: `url(${BannerImg})`,
                 backgroundSize: "cover",
