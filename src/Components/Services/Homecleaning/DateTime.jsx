@@ -1,4 +1,4 @@
-import Reac, { useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { LuRefreshCw } from "react-icons/lu"
 import autoasignimg from "../../../assets/funnel-auto-assign-image-logo.svg"
 import phoebe from "../../../assets/phoebe.webp"
@@ -10,8 +10,15 @@ import { IoStar } from "react-icons/io5"
 import Slider from 'react-slick'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { BsInfoCircleFill } from "react-icons/bs"
+import Frequency from './Frequency'
 
 const DateTime = () => {
+  
+  const [showFrequency, setShowFrequency] = useState(false); // State to toggle popup
+
+  const toggleFrequencyPopup = () => {
+    setShowFrequency(!showFrequency); // Toggle popup visibility
+  };
 
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -222,7 +229,7 @@ const DateTime = () => {
         <div className='flex flex-col gap-2 border border-blue px-5 py-3 rounded-lg bg-[#ebfaff]'>
           <div className='flex justify-between'>
             <h4 className='text-lg font-bold'>Frequency</h4>
-            <a href='' className='text-blue underline font-semibold'>Change</a>
+            <p className='text-blue underline font-semibold'  onClick={toggleFrequencyPopup}>Change</p>
           </div>
           <div className='bg-blue text-white flex items-center font-semibold gap-x-2 p-2 rounded-lg w-fit text-sm max-mobile:text-xs'>
             <LuRefreshCw />
@@ -325,6 +332,21 @@ const DateTime = () => {
               <p className='text-sm text-gray-500'>Enjoy free cancellation up to 6 hours before your booking start time.</p>
             </div>
         </div>
+           {/* Frequency Popup */}
+           {showFrequency && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg max-w-[498px] w-full">
+              <Frequency />
+              {/* Close Button */}
+              <button
+                onClick={toggleFrequencyPopup}
+                className="text-red-500 font-semibold mt-4"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </>
   )
