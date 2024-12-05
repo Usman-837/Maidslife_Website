@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../../Navbar'
 import Footer from '../../Footer'
 import { FaArrowLeft } from "react-icons/fa"
@@ -6,7 +6,8 @@ import Servicesdetails from './Servicesdetails'
 import { useSelector, useDispatch } from 'react-redux'
 import Popularaddons from './Popularaddons'
 import DateTime from "./DateTime"
-import { nextStep, prevStep } from '../../../redux/actions/stepActions'
+import { nextStep, prevStep, resetStep } from '../../../redux/actions/stepActions'
+import { useNavigate } from 'react-router-dom'
 
 
 const Homecleaning = () => {
@@ -14,6 +15,21 @@ const Homecleaning = () => {
   const { duration, professionals, material } = useSelector((state) => state.booking)
   const currentStep = useSelector((state) => state.step.currentStep); // Access step state
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+    // Reset step on page refresh
+    useEffect(() => {
+      dispatch(resetStep());
+    }, [dispatch]);
+  
+    const handleBackClick = () => {
+      if (currentStep === 1) {
+        navigate('/'); // Navigate to the home page
+      } else {
+        dispatch(prevStep()); // Go to the previous step
+      }
+    };
+
 
   const bookingdetails = [
     {
@@ -53,12 +69,12 @@ const Homecleaning = () => {
       <Navbar />
       <div className='flex items-center justify-center bg-[#fafafa] px-4'>
         <section className='max-w-container w-full grid justify-center items-center'>
-          <header className='py-5'>
+          <header className='py-5 pt-28'>
             <div className='flex items-center gap-x-3 pb-2'>
-              <FaArrowLeft className='text-xl max-mobile:text-lg cursor-pointer' onClick={() => dispatch(prevStep())} />
+              <FaArrowLeft className='text-xl max-mobile:text-lg cursor-pointer' onClick={handleBackClick} />
               <span className='font-semibold'>Step {currentStep} of 4</span>
             </div>
-            <div className='mt-5 font-semibold text-2xl max-mobile:text-2xl'>
+            <div className='mt-1 font-semibold text-2xl max-mobile:text-2xl'>
               {currentStep === 1 ? (
                 <h2>Service Details</h2>
               ) : currentStep === 2 ? (
