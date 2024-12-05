@@ -25,20 +25,20 @@ const popularAddonsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cards: state.cards.map((card) =>
-                    card.id === action.payload && card.count < 5 
+                    card.id === action.payload && card.count < 5
                         ? { ...card, count: card.count + 1 }
                         : card
                 ),
             };
-            case 'DECREMENT_COUNT':
-                return {
-                    ...state,
-                    cards: state.cards.map((card) =>
-                        card.id === action.payload
-                            ? { ...card, count: Math.max(0, card.count - 1), isVisible: card.count > 1 }
-                            : card
-                    ),
-                };            
+        case 'DECREMENT_COUNT':
+            return {
+                ...state,
+                cards: state.cards.map((card) =>
+                    card.id === action.payload
+                        ? { ...card, count: Math.max(0, card.count - 1), isVisible: card.count > 1 }
+                        : card
+                ),
+            };
         default:
             return state;
     }
