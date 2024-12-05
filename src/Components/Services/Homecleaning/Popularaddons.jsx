@@ -10,11 +10,28 @@ import { FaMinus } from "react-icons/fa6"
 import { FiPlus } from "react-icons/fi"
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleCard, incrementCount, decrementCount } from '../../../redux/actions/popularAddonsActions'
+import { addBookingDetail, removeBookingDetail  } from '../../../redux/actions/bookingActions'
 
 const Popularaddons = () => {
 
     const dispatch = useDispatch();
     const cardStates = useSelector((state) => state.popularAddons.cards)
+
+        const handleAddService = (data) => {
+        dispatch(incrementCount(data.id));
+        dispatch(toggleCard(data.id));
+        dispatch(addBookingDetail({ id: data.id, title: data.title, count: 1 })); // Add service to booking details
+    };
+
+    const handleRemoveService = (data) => {
+        const cardState = cardStates.find((card) => card.id === data.id);
+        if (cardState?.count <= 1) {
+            dispatch(removeBookingDetail(data.id)); // Remove service from booking details
+            dispatch(toggleCard(data.id));
+            dispatch(decrementCount(data.id));
+        } 
+            dispatch(decrementCount(data.id));
+    };
 
     var settings = {
         dots: true,
@@ -22,7 +39,7 @@ const Popularaddons = () => {
         infinite: true,
         speed: 500,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 3000,
         cssEase: 'linear',
         pauseOnHover: true,
@@ -128,13 +145,7 @@ const Popularaddons = () => {
                                             <div className="text-sm flex items-center justify-between gap-x-3 bg-gray-200 text-gray-600 font-bold w-24 rounded-full">
                                                 <button
                                                     className="p-2 bg-white border hover:border-[#00C3FF] rounded-full text-[#00C3FF]"
-                                                    onClick={() => {
-                                                        if (count > 1) {
-                                                            dispatch(decrementCount(data.id));
-                                                        } else {
-                                                            dispatch(toggleCard(data.id));
-                                                        }
-                                                    }}
+                                                    onClick={() => handleRemoveService(data)}
                                                 >
                                                     <FaMinus />
                                                 </button>
@@ -142,8 +153,8 @@ const Popularaddons = () => {
                                                 <button
                                                     className={`p-2 bg-white border ${count >= 5 ? "cursor-not-allowed text-gray-400" : "hover:border-[#00C3FF] text-[#00C3FF]"
                                                         } rounded-full`}
-                                                    onClick={() => count < 5 && dispatch(incrementCount(data.id))}
-                                                    disabled={count >= 5}
+                                                        onClick={() => dispatch(incrementCount(data.id))}
+                                                        disabled={count >= 5}
                                                 >
                                                     <FiPlus />
                                                 </button>
@@ -152,7 +163,7 @@ const Popularaddons = () => {
                                         ) : (
                                             <div
                                                 className="text-sm flex items-center justify-center gap-x-1 bg-[#00C3FF] text-white font-bold w-20 rounded-full py-[2px] cursor-pointer"
-                                                onClick={() => dispatch(toggleCard(data.id))}
+                                                onClick={() => handleAddService(data)}
                                             >
                                                 <p>ADD</p> <FiPlus />
                                             </div>

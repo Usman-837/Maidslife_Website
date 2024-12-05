@@ -13,7 +13,12 @@ import SubmitPopup from './SubmitPopup'
 
 const Homecleaning = () => {
 
-  const totalCost = useSelector((state) => state.booking.totalCost);
+  const { services } = useSelector((state) => state.booking); // Get services dynamically
+
+  const bookingTotalCost = useSelector((state) => state.booking.totalCost);
+  const addonsTotalCost = useSelector((state) => state.popularAddons.totalCost);
+
+  const totalCost = bookingTotalCost + addonsTotalCost;
 
   const { duration, professionals, material } = useSelector((state) => state.booking)
   const currentStep = useSelector((state) => state.step.currentStep); // Access step state
@@ -63,9 +68,17 @@ const Homecleaning = () => {
       des: "Home Cleaning"
     },
     {
-      id: 4,
-      title: "Service Details",
-      des: "2x Party Cleaning"
+      id: 4, 
+      title: "Service Details", 
+      des: (
+        <ul>
+          {services.map((service) => (
+            <li key={service.id}>
+              {service.count}x &nbsp; {service.title}
+            </li>
+          ))}
+        </ul>
+      )
     },
     {
       id: 5,
