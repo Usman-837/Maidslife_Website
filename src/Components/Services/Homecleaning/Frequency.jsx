@@ -1,7 +1,7 @@
 import React from 'react'
 import { RxCross2 } from "react-icons/rx"
 
-const Frequency = () => {
+const Frequency = ({ toggleFrequencyPopup }) => {
 
     const choosefrequency = [
         {
@@ -32,7 +32,7 @@ const Frequency = () => {
         <div>
             <div className='flex justify-between border-b'>
                 <h4 className="text-lg font-bold mb-4">Choose Your Frequency</h4>
-                <RxCross2 className='text-2xl font-semibold' />
+                <RxCross2 className='text-2xl font-semibold'  onClick={toggleFrequencyPopup} />
             </div>
             <div className="flex flex-col gap-4 pt-6">
                 {

@@ -336,14 +336,7 @@ const DateTime = () => {
            {showFrequency && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white p-6 rounded-lg shadow-lg max-w-[498px] w-full">
-              <Frequency />
-              {/* Close Button */}
-              <button
-                onClick={toggleFrequencyPopup}
-                className="text-red-500 font-semibold mt-4"
-              >
-                Close
-              </button>
+            <Frequency toggleFrequencyPopup={toggleFrequencyPopup} />
             </div>
           </div>
         )}
