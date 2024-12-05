@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../../Navbar'
 import Footer from '../../Footer'
 import { FaArrowLeft } from "react-icons/fa"
@@ -8,6 +8,7 @@ import Popularaddons from './Popularaddons'
 import DateTime from "./DateTime"
 import { nextStep, prevStep, resetStep } from '../../../redux/actions/stepActions'
 import { useNavigate } from 'react-router-dom'
+import SubmitPopup from './SubmitPopup'
 
 
 const Homecleaning = () => {
@@ -16,20 +17,32 @@ const Homecleaning = () => {
   const currentStep = useSelector((state) => state.step.currentStep); // Access step state
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [showSubmitPopup, setShowSubmitPopup] = useState(false)
 
-    // Reset step on page refresh
-    useEffect(() => {
-      dispatch(resetStep());
-    }, [dispatch]);
-  
-    const handleBackClick = () => {
-      if (currentStep === 1) {
-        navigate('/'); // Navigate to the home page
-      } else {
-        dispatch(prevStep()); // Go to the previous step
-      }
-    };
+  const toggleSubmitPopup = () => {
+    setShowSubmitPopup(!showSubmitPopup); // Toggle popup visibility
+  };
 
+  // Reset step on page refresh
+  useEffect(() => {
+    dispatch(resetStep());
+  }, [dispatch]);
+
+  const handleBackClick = () => {
+    if (currentStep === 1) {
+      navigate('/'); // Navigate to the home page
+    } else {
+      dispatch(prevStep()); // Go to the previous step
+    }
+  };
+
+  const handleNextClick = () => {
+    if (currentStep === 3) {
+      setShowSubmitPopup(true); // Show the submit popup
+    } else {
+      dispatch(nextStep()); // Advance to the next step
+    }
+  };
 
   const bookingdetails = [
     {
@@ -39,26 +52,36 @@ const Homecleaning = () => {
     },
     {
       id: 2,
+      title: "Frequency",
+      des: "One Time"
+    },
+    {
+      id: 3,
       title: "Service",
       des: "Home Cleaning"
     },
     {
-      id: 3,
+      id: 4,
       title: "Service Details",
       des: "2x Party Cleaning"
     },
     {
-      id: 4,
+      id: 5,
       title: "Duration",
       des: duration
     },
     {
-      id: 5,
+      id: 6,
+      title: "Date and Start Time",
+      des: <div>01 Dec 2024 <br /> 13:00-13:30</div>
+    },
+    {
+      id: 7,
       title: "Number of Professionals",
       des: professionals
     },
     {
-      id: 6,
+      id: 8,
       title: "Material",
       des: material
     }
@@ -79,10 +102,10 @@ const Homecleaning = () => {
                 <h2>Service Details</h2>
               ) : currentStep === 2 ? (
                 <h2>Popular Add-ons</h2>
-              ) 
-              : (
-                <h2>Date & Time</h2>
-              )}
+              )
+                : (
+                  <h2>Date & Time</h2>
+                )}
             </div>
           </header>
           <main className='pb-16'>
@@ -90,10 +113,10 @@ const Homecleaning = () => {
               <div className='bg-white max-w-[558px] w-full border rounded-xl p-6'>
                 {currentStep === 1 && <Servicesdetails />}
                 {currentStep === 2 && <Popularaddons />}
-                {currentStep === 3 && <DateTime/>}
+                {currentStep === 3 && <DateTime />}
                 {/* Next Button */}
                 <div className='py-6'>
-                  <p className='text-center bg-[#FFD03E] hover:bg-yellow-400 py-3 max-mobile:py-2 rounded-full text-white font-bold' onClick={() => dispatch(nextStep())}>Next</p>
+                  <p className='text-center bg-[#FFD03E] hover:bg-yellow-400 py-3 max-mobile:py-2 rounded-full text-white font-bold' onClick={handleNextClick}>Next</p>
                 </div>
               </div>
               <div className='flex flex-col w-full gap-y-7 max-md:mt-10'>
@@ -127,6 +150,13 @@ const Homecleaning = () => {
         </section>
       </div >
       <Footer />
+      {showSubmitPopup && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg max-w-96 w-full">
+            <SubmitPopup toggleSubmitPopup={toggleSubmitPopup} />
+          </div>
+        </div>
+      )}
     </>
   )
 }
