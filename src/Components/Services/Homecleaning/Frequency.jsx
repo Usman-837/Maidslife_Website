@@ -56,6 +56,9 @@ const Frequency = ({ toggleFrequencyPopup }) => {
                         </div>
                     ))
                 }
+                <div className='bg-[#ffd03e] text-white text-center py-3 rounded-full mt-3 font-bold' onClick={toggleFrequencyPopup}>
+                    Select
+                </div>
             </div>
         </div>
     );
