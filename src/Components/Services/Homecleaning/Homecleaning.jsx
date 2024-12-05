@@ -13,6 +13,8 @@ import SubmitPopup from './SubmitPopup'
 
 const Homecleaning = () => {
 
+  const totalCost = useSelector((state) => state.booking.totalCost);
+
   const { duration, professionals, material } = useSelector((state) => state.booking)
   const currentStep = useSelector((state) => state.step.currentStep); // Access step state
   const dispatch = useDispatch()
@@ -141,7 +143,7 @@ const Homecleaning = () => {
                   <h4 className='font-bold text-lg mb-4'>Payment Details</h4>
                   <div className='flex items-center justify-between pb-3'>
                     <p className='text-[#00000061]'>Total</p>
-                    <p className='text-right'>AED 55.00</p>
+                    <p className='text-right'>AED {totalCost.toFixed(2)}</p>
                   </div>
                 </div>
               </div>

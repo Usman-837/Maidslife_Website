@@ -1,29 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsInfoCircleFill } from "react-icons/bs";
-import { useDispatch } from 'react-redux';
-import { setDuration, setProfessionals, setMaterial } from '../../../redux/actions/bookingActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { setDuration, setProfessionals, setMaterial, updateTotalCost } from '../../../redux/actions/bookingActions';
 
 const Servicesdetails = () => {
     const dispatch = useDispatch();
 
-    // States to track active selections
-    const [activeHour, setActiveHour] = useState(null); // State for active hour
-    const [activeProfessional, setActiveProfessional] = useState(null); // State for active professional
-    const [activeMaterial, setActiveMaterial] = useState(''); // State for active material
+    const totalCost = useSelector((state) => state.booking.totalCost); // Access total cost from Redux state
 
-    const handleSetDuration = (hours, id) => {
-        setActiveHour(id); // Set the active hour by ID
-        dispatch(setDuration(hours));
+    // Initial default values
+    const [selectedHour, setSelectedHour] = useState(1); // Default: 1 hour
+    const [selectedProfessionals, setSelectedProfessionals] = useState(1); // Default: 1 professional
+    const [activeMaterial, setActiveMaterial] = useState('No'); // Default: No material
+
+    const HOUR_COST = 25; // Cost per hour
+    const PROFESSIONAL_COST = 55; // Cost per professional
+    const MATERIAL_COST = 10; // Cost for materials
+
+    useEffect(() => {
+        // Set initial total cost with default values
+        const initialCost = HOUR_COST + PROFESSIONAL_COST; // 1 hour + 1 professional
+        dispatch(updateTotalCost(initialCost));
+        dispatch(setDuration(1)); // Default duration
+        dispatch(setProfessionals(1)); // Default professional count
+        dispatch(setMaterial('No')); // Default material selection
+    }, [dispatch]);
+
+    const handleSetDuration = (id) => {
+        setSelectedHour(id); // Update selected hour
+        const updatedCost = id * HOUR_COST + selectedProfessionals * PROFESSIONAL_COST + (activeMaterial === 'Yes' ? MATERIAL_COST : 0);
+        dispatch(updateTotalCost(updatedCost)); // Update total cost in Redux
+        dispatch(setDuration(id));
     };
 
-    const handleSetProfessionals = (professionals, id) => {
-        setActiveProfessional(id); // Set the active professional by ID
-        dispatch(setProfessionals(professionals));
+    const handleSetProfessionals = (id) => {
+        setSelectedProfessionals(id);
+        const updatedCost = selectedHour * HOUR_COST + id * PROFESSIONAL_COST + (activeMaterial === 'Yes' ? MATERIAL_COST : 0);
+        dispatch(updateTotalCost(updatedCost)); // Update total cost in Redux
+        dispatch(setProfessionals(id));
     };
 
     const handleSetMaterial = (material) => {
-        setActiveMaterial(material); // Set the active material
-        dispatch(setMaterial(material));
+        setActiveMaterial(material); // Update active material
+        dispatch(setMaterial(material)); // Update material selection in Redux
+
+        const updatedCost = selectedHour * HOUR_COST + selectedProfessionals * PROFESSIONAL_COST + (material === 'Yes' ? MATERIAL_COST : 0);
+        dispatch(updateTotalCost(updatedCost)); // Update total cost in Redux
     };
 
     const [text, setText] = useState('');
@@ -67,8 +89,8 @@ const Servicesdetails = () => {
                     <div
                         key={data.id}
                         className={`w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer
-                            ${activeHour === data.id ? 'bg-[#d9f6ff] border-blue text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
-                        onClick={() => handleSetDuration(data.hours, data.id)}
+                            ${selectedHour === data.id ? 'bg-[#d9f6ff] border-blue text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
+                        onClick={() => handleSetDuration(data.id)}
                     >
                         {data.hours}
                     </div>
@@ -84,8 +106,8 @@ const Servicesdetails = () => {
                     <div
                         key={data.id}
                         className={`w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer
-                            ${activeProfessional === data.id ? 'bg-[#d9f6ff] border-blue text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
-                        onClick={() => handleSetProfessionals(data.prof, data.id)}
+                            ${selectedProfessionals === data.id ? 'bg-[#d9f6ff] border-blue text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
+                        onClick={() => handleSetProfessionals(data.id)}
                     >
                         {data.prof}
                     </div>
