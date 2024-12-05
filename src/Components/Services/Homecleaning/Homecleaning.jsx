@@ -19,26 +19,30 @@ const Homecleaning = () => {
   const navigate = useNavigate()
   const [showSubmitPopup, setShowSubmitPopup] = useState(false)
 
-    // Reset step on page refresh
-    useEffect(() => {
-      dispatch(resetStep());
-    }, [dispatch]);
-  
-    const handleBackClick = () => {
-      if (currentStep === 1) {
-        navigate('/'); // Navigate to the home page
-      } else {
-        dispatch(prevStep()); // Go to the previous step
-      }
-    };
+  const toggleSubmitPopup = () => {
+    setShowSubmitPopup(!showSubmitPopup); // Toggle popup visibility
+  };
 
-    const handleNextClick = () => {
-      if (currentStep === 3) {
-        setShowSubmitPopup(true); // Show the submit popup
-      } else {
-        dispatch(nextStep()); // Advance to the next step
-      }
-    };
+  // Reset step on page refresh
+  useEffect(() => {
+    dispatch(resetStep());
+  }, [dispatch]);
+
+  const handleBackClick = () => {
+    if (currentStep === 1) {
+      navigate('/'); // Navigate to the home page
+    } else {
+      dispatch(prevStep()); // Go to the previous step
+    }
+  };
+
+  const handleNextClick = () => {
+    if (currentStep === 3) {
+      setShowSubmitPopup(true); // Show the submit popup
+    } else {
+      dispatch(nextStep()); // Advance to the next step
+    }
+  };
 
   const bookingdetails = [
     {
@@ -69,7 +73,7 @@ const Homecleaning = () => {
     {
       id: 6,
       title: "Date and Start Time",
-      des: <div>01 Dec 2024 <br/> 13:00-13:30</div>
+      des: <div>01 Dec 2024 <br /> 13:00-13:30</div>
     },
     {
       id: 7,
@@ -98,10 +102,10 @@ const Homecleaning = () => {
                 <h2>Service Details</h2>
               ) : currentStep === 2 ? (
                 <h2>Popular Add-ons</h2>
-              ) 
-              : (
-                <h2>Date & Time</h2>
-              )}
+              )
+                : (
+                  <h2>Date & Time</h2>
+                )}
             </div>
           </header>
           <main className='pb-16'>
@@ -109,7 +113,7 @@ const Homecleaning = () => {
               <div className='bg-white max-w-[558px] w-full border rounded-xl p-6'>
                 {currentStep === 1 && <Servicesdetails />}
                 {currentStep === 2 && <Popularaddons />}
-                {currentStep === 3 && <DateTime/>}
+                {currentStep === 3 && <DateTime />}
                 {/* Next Button */}
                 <div className='py-6'>
                   <p className='text-center bg-[#FFD03E] hover:bg-yellow-400 py-3 max-mobile:py-2 rounded-full text-white font-bold' onClick={handleNextClick}>Next</p>
@@ -147,15 +151,9 @@ const Homecleaning = () => {
       </div >
       <Footer />
       {showSubmitPopup && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg">
-            <SubmitPopup />
-            <button
-              className="mt-4 px-4 py-2 bg-[#FFD03E] rounded-full text-white"
-              onClick={() => setShowSubmitPopup(false)}
-            >
-              Close
-            </button>
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg max-w-96 w-full">
+            <SubmitPopup toggleSubmitPopup={toggleSubmitPopup} />
           </div>
         </div>
       )}
