@@ -111,7 +111,7 @@ const Popularaddons = () => {
                     popularaddonscards.map((data) => {
                         const cardState = cardStates.find((card) => card.id === data.id);
                         const isVisible = cardState?.isVisible || false;
-                        const count = cardState?.count || 0;
+                        const count = cardState?.count || 1;
 
                         return (
                             <div className='px-2 mb-10 '>
