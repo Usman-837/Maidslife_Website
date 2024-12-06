@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { RxCross2 } from "react-icons/rx"
 
+
 const SubmitPopup = ({ toggleSubmitPopup }) => {
   const [formData, setFormData] = useState({
     name: '',
