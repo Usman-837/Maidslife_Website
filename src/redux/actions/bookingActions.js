@@ -42,3 +42,4 @@ export const setFrequency = (frequency) => ({
     type: 'SET_FREQUENCY',
     payload: frequency,
 });
+
