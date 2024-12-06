@@ -14,6 +14,7 @@ import SubmitPopup from './SubmitPopup'
 const Homecleaning = () => {
 
   const { services } = useSelector((state) => state.booking); // Get services dynamically
+  const { frequency} = useSelector((state) => state.booking);
 
   const bookingTotalCost = useSelector((state) => state.booking.totalCost);
   const addonsTotalCost = useSelector((state) => state.popularAddons.totalCost);
@@ -60,7 +61,7 @@ const Homecleaning = () => {
     {
       id: 2,
       title: "Frequency",
-      des: "One Time"
+      des: frequency
     },
     {
       id: 3,

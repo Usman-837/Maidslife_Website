@@ -37,3 +37,8 @@ export const removeBookingDetail = (serviceId) => ({
     type: REMOVE_BOOKING_DETAIL,
     payload: serviceId,
 });
+
+export const setFrequency = (frequency) => ({
+    type: 'SET_FREQUENCY',
+    payload: frequency,
+});

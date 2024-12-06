@@ -11,10 +11,12 @@ import Slider from 'react-slick'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { BsInfoCircleFill } from "react-icons/bs"
 import Frequency from './Frequency'
+import { useSelector } from 'react-redux';
 
 const DateTime = () => {
   
   const [showFrequency, setShowFrequency] = useState(false); // State to toggle popup
+  const { frequency} = useSelector((state) => state.booking);
 
   const toggleFrequencyPopup = () => {
     setShowFrequency(!showFrequency); // Toggle popup visibility
@@ -233,7 +235,7 @@ const DateTime = () => {
           </div>
           <div className='bg-blue text-white flex items-center font-semibold gap-x-2 p-2 rounded-lg w-fit text-sm max-mobile:text-xs'>
             <LuRefreshCw />
-            <p>One Time Service</p>
+            <p>{frequency} Service</p>
           </div>
         </div>
         {/* Professionals */}

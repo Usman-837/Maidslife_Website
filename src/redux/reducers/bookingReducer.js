@@ -6,6 +6,7 @@ const initialState = {
     material: 'No', // Default value
     totalCost: 0,
     services: [], // Array to hold dynamically added services
+    frequency: 'One Time', // Default frequency
 };
 
 const bookingReducer = (state = initialState, action) => {
@@ -39,6 +40,11 @@ const bookingReducer = (state = initialState, action) => {
             return {
                 ...state,
                 services: state.services.filter(service => service.id !== action.payload), // Remove service by ID
+            };
+        case 'SET_FREQUENCY':
+            return {
+                ...state,
+                frequency: action.payload,
             };
         default:
             return state;
