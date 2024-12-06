@@ -15,8 +15,26 @@ const App = () => {
 
   // Define all service routes
   const servicesRoutes = [
-    { path: '/homecleaning', component: <Homecleaning /> }
-    // Add more services here dynamically as needed
+    { path: '/homecleaning', component: <Homecleaning /> },
+    { path: '/furniturecleaning', component: <Homecleaning /> },
+    { path: '/deepcleaning', component: <Homecleaning /> },
+    { path: '/accleaning', component: <Homecleaning /> },
+    { path: '/laundryanddrycleaning', component: <Homecleaning /> },
+    { path: '/carwashathome', component: <Homecleaning /> },
+    { path: '/malecleaning', component: <Homecleaning /> },
+    { path: '/shoecleaning', component: <Homecleaning /> },
+    { path: '/womenssalon', component: <Homecleaning /> },
+    { path: '/womensspa', component: <Homecleaning /> },
+    { path: '/premiummenssalon', component: <Homecleaning /> },
+    { path: '/mensspa', component: <Homecleaning /> },
+    { path: '/makeup', component: <Homecleaning /> },
+    { path: '/haircare', component: <Homecleaning /> },
+    { path: '/nailextensions', component: <Homecleaning /> },
+    { path: '/lashesandbrows', component: <Homecleaning /> },
+    { path: '/spraytanning', component: <Homecleaning /> },
+    { path: '/handyman&maintenance', component: <Homecleaning /> },
+    { path: '/homepainting', component: <Homecleaning /> },
+    { path: '/watertankcleaning', component: <Homecleaning /> }
   ];
 
   // Check if the current path matches any service route

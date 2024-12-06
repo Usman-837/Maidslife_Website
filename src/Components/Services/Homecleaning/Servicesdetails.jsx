@@ -13,8 +13,8 @@ const Servicesdetails = () => {
     const [selectedProfessionals, setSelectedProfessionals] = useState(1); // Default: 1 professional
     const [activeMaterial, setActiveMaterial] = useState('No'); // Default: No material
 
-    const HOUR_COST = 25; // Cost per hour
-    const PROFESSIONAL_COST = 55; // Cost per professional
+    const HOUR_COST = 20; // Cost per hour
+    const PROFESSIONAL_COST = 50; // Cost per professional
     const MATERIAL_COST = 10; // Cost for materials
 
     useEffect(() => {

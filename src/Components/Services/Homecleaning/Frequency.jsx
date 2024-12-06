@@ -1,7 +1,16 @@
 import React from 'react'
 import { RxCross2 } from "react-icons/rx"
+import { useDispatch } from 'react-redux';
+import { setFrequency } from '../../../redux/actions/bookingActions';
 
 const Frequency = ({ toggleFrequencyPopup }) => {
+
+    const dispatch = useDispatch();
+
+    const handleFrequencySelect = (freq) => {
+        dispatch(setFrequency(freq)); // Dispatch selected frequency
+        toggleFrequencyPopup(); // Close popup
+    };
 
     const choosefrequency = [
         {
@@ -37,7 +46,7 @@ const Frequency = ({ toggleFrequencyPopup }) => {
             <div className="flex flex-col gap-4 pt-6">
                 {
                     choosefrequency.map((data) => (
-                        <div key={data.id} className='border px-5 py-3 rounded-lg space-y-4 hover:bg-[#ebfaff] hover:border-[#00c3ff]'>
+                        <div key={data.id} className='border px-5 py-3 rounded-lg space-y-4 hover:bg-[#ebfaff] hover:border-[#00c3ff]'   onClick={() => handleFrequencySelect(data.freq)}>
                             <div className="flex justify-between border-b pb-3">
                                 <div className='space-y-3'>
                                     <h3 className='text-2xl font-bold'>{data.freq}</h3>
