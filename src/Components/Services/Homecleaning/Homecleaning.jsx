@@ -98,6 +98,11 @@ const Homecleaning = () => {
     },
     {
       id: 8,
+      title: "Name of Professionals",
+      des: "Phoebe"
+    },
+    {
+      id: 9,
       title: "Material",
       des: material
     }
@@ -169,7 +174,9 @@ const Homecleaning = () => {
       {showSubmitPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg max-w-96 w-full">
-            <SubmitPopup toggleSubmitPopup={toggleSubmitPopup} />
+            <SubmitPopup toggleSubmitPopup={toggleSubmitPopup} 
+             totalCost={totalCost} 
+             bookingDetails={bookingdetails} />
           </div>
         </div>
       )}
