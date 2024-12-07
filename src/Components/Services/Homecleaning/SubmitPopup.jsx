@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { RxCross2 } from "react-icons/rx"
+import { RxCross2 } from "react-icons/rx";
+import emailjs from 'emailjs-com';  // Import emailjs-com
 
-
-const SubmitPopup = ({ toggleSubmitPopup }) => {
+const SubmitPopup = ({ toggleSubmitPopup, totalCost, bookingDetails }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,9 +17,47 @@ const SubmitPopup = ({ toggleSubmitPopup }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Submitted Data:', formData);
-    alert('Form Submitted Successfully!');
+  
+    // Ensure totalCost is defined before calling toFixed
+    const formattedTotalCost = totalCost ? totalCost.toFixed(2) : "0.00";
+  
+    // Extract only the necessary details
+    const simplifiedBookingDetails = bookingDetails.map(item => ({
+      title: item.title,
+      des: typeof item.des === 'string' ? item.des : "Details not available",
+    }));
+  
+    // Prepare the email data
+    const emailData = {
+      name: formData.name,
+      email: formData.email,
+      contact: formData.contact,
+      address: formData.address,
+      bookingDetails: JSON.stringify(simplifiedBookingDetails), // Use the simplified details
+      totalCost: formattedTotalCost, // Use formatted totalCost
+    };
+    // Log the email data for debugging
+    console.log("Sending email data:", emailData);
+
+    // Send email using EmailJS
+    emailjs
+      .send(
+        'service_9c91f8f',  // Your service ID from EmailJS
+        'template_9unq75t',  // Your template ID from EmailJS
+        emailData,
+        'GYkUsD2PjtM-aUVWJ'  // Your user ID from EmailJS
+      )
+      .then(
+        (response) => {
+          console.log('Email sent successfully:', response);
+          alert('Form Submitted Successfully!');
+          toggleSubmitPopup(); // Close the popup after success
+        },
+        (error) => {
+          console.error('Error sending email:', error);
+          alert('There was an error submitting the form. Please check the console for more details.');
+        }
+      );
   };
 
   return (
