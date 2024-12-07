@@ -19,22 +19,50 @@ const SubmitPopup = ({ toggleSubmitPopup, totalCost, bookingDetails }) => {
     e.preventDefault();
   
     // Ensure totalCost is defined before calling toFixed
-    const formattedTotalCost = totalCost ? totalCost.toFixed(2) : "0.00";
+    const formattedTotalCost = totalCost ? totalCost.toFixed(2) : "0.00 AED";
   
     // Extract only the necessary details
-    const simplifiedBookingDetails = bookingDetails.map(item => ({
-      title: item.title,
-      des: typeof item.des === 'string' ? item.des : "Details not available",
-    }));
+    const formattedBookingDetails = bookingDetails
+    .map((item) => {
+      let description;
   
+      // Check if `des` is JSX (React component)
+      if (React.isValidElement(item.des)) {
+        // Extract text content from JSX children
+        description = item.des.props.children.map((child) =>
+          typeof child === "object"
+            ? `${child.props.children.join("")}`
+            : `${child.join("")}`
+        ).join("\n\n");
+        
+      } else if (typeof item.des === "number") {
+        // Handle numerical `des` directly
+        description = item.des.toString();
+      } else if (typeof item.des === "string" && item.des.trim() !== "") {
+        // Handle string-based `des`
+        description = item.des;
+      } else {
+        // Fallback for missing or invalid `des`
+        description = "Details not available";
+      }
+  
+      return `${item.title} : ${description}`;
+    })
+    .join("\n\n");
+  
+  
+  // Log the formatted output for debugging
+  console.log(formattedBookingDetails);
+  
+
     // Prepare the email data
     const emailData = {
       name: formData.name,
       email: formData.email,
       contact: formData.contact,
       address: formData.address,
-      bookingDetails: JSON.stringify(simplifiedBookingDetails), // Use the simplified details
-      totalCost: formattedTotalCost, // Use formatted totalCost
+      bookingDetails: formattedBookingDetails,  // Use the simplified details
+      totalCost: `${formattedTotalCost} AED`, // Use formatted totalCost
     };
     // Log the email data for debugging
     console.log("Sending email data:", emailData);

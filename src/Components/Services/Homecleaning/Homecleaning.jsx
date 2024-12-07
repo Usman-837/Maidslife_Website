@@ -56,7 +56,7 @@ const Homecleaning = () => {
     {
       id: 1,
       title: "Address",
-      des: <div>Axis - Beach Walk -<br />Dubai Marina - Dubai -<br />United Arab Emirates</div>
+      des: "Axis - Beach Walk - Dubai Marina - Dubai - United Arab Emirates"
     },
     {
       id: 2,
@@ -89,7 +89,7 @@ const Homecleaning = () => {
     {
       id: 6,
       title: "Date and Start Time",
-      des: <div>01 Dec 2024 <br /> 13:00-13:30</div>
+      des: "01 Dec 2024 13:00-13:30"
     },
     {
       id: 7,
