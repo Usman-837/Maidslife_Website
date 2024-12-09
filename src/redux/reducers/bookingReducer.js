@@ -15,7 +15,7 @@ import {
 
 const initialState = {
     duration: '1 hour', // Default value
-    professionalCount: 1, // New field for count
+    professionalCount: 2, // New field for count
     professionals: [], // Array to hold professional names
     material: 'No', // Default value
     totalCost: 0,
