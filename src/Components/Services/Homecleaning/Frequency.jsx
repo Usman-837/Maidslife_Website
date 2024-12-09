@@ -1,7 +1,7 @@
 import React from 'react'
 import { RxCross2 } from "react-icons/rx"
-import { useDispatch } from 'react-redux';
-import { setFrequency } from '../../../redux/actions/bookingActions';
+import { useDispatch } from 'react-redux'
+import { setFrequency } from '../../../redux/actions/bookingActions'
 
 const Frequency = ({ toggleFrequencyPopup }) => {
 
@@ -73,4 +73,4 @@ const Frequency = ({ toggleFrequencyPopup }) => {
     );
 };
 
-export default Frequency;
+export default Frequency

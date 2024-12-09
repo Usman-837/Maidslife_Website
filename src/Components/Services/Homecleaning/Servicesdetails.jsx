@@ -1,14 +1,12 @@
-// src/components/Servicesdetails.js
-
-import React, { useState, useEffect } from 'react';
-import { BsInfoCircleFill } from "react-icons/bs";
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { BsInfoCircleFill } from "react-icons/bs"
+import { useDispatch, useSelector } from 'react-redux'
 import { 
     setDuration, 
-    setProfessionalCount, // Import the new action
+    setProfessionalCount, 
     setMaterial, 
     updateTotalCost 
-} from '../../../redux/actions/bookingActions';
+} from '../../../redux/actions/bookingActions'
 
 const Servicesdetails = () => {
     const dispatch = useDispatch();
@@ -163,4 +161,4 @@ const Servicesdetails = () => {
     );
 };
 
-export default Servicesdetails;
+export default Servicesdetails

@@ -1,16 +1,14 @@
-// src/components/Homecleaning.js
-
-import React, { useEffect, useState } from 'react';
-import Navbar from '../../Navbar';
-import Footer from '../../Footer';
-import { FaArrowLeft } from "react-icons/fa";
-import Servicesdetails from './Servicesdetails';
-import Popularaddons from './Popularaddons';
-import DateTime from "./DateTime";
-import { useSelector, useDispatch } from 'react-redux';
-import { nextStep, prevStep, resetStep } from '../../../redux/actions/stepActions'; // Adjust the import path as necessary
-import { useNavigate } from 'react-router-dom';
-import SubmitPopup from './SubmitPopup';
+import React, { useEffect, useState } from 'react'
+import Navbar from '../../Navbar'
+import Footer from '../../Footer'
+import { FaArrowLeft } from "react-icons/fa"
+import Servicesdetails from './Servicesdetails'
+import Popularaddons from './Popularaddons'
+import DateTime from "./DateTime"
+import { useSelector, useDispatch } from 'react-redux'
+import { nextStep, prevStep, resetStep } from '../../../redux/actions/stepActions'
+import { useNavigate } from 'react-router-dom'
+import SubmitPopup from './SubmitPopup'
 
 const Homecleaning = () => {
 
@@ -24,7 +22,7 @@ const Homecleaning = () => {
     selectedDate,
     selectedTime,
     duration,
-    professionalCount, // Added professionalCount
+    professionalCount,
     professionals,
     material,
     totalCost
@@ -217,4 +215,4 @@ const Homecleaning = () => {
   );
 };
 
-export default Homecleaning;
+export default Homecleaning

@@ -1,28 +1,24 @@
-// src/components/DateTime.js
-
-import React, { useRef, useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { LuRefreshCw } from "react-icons/lu";
-import { IoStar } from "react-icons/io5";
-import Slider from 'react-slick';
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { BsInfoCircleFill } from "react-icons/bs";
-import Frequency from './Frequency';
+import React, { useRef, useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { LuRefreshCw } from "react-icons/lu"
+import { IoStar } from "react-icons/io5"
+import Slider from 'react-slick'
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
+import { BsInfoCircleFill } from "react-icons/bs"
+import Frequency from './Frequency'
 import { 
-    setFrequency, 
     setSelectedDate, 
     setSelectedTime,
     setProfessionals,
-    // Removed setProfessionalCount import
-} from '../../../redux/actions/bookingActions'; // Adjust the import path as necessary
+} from '../../../redux/actions/bookingActions'
 
 // Import images
-import autoasignimg from "../../../assets/funnel-auto-assign-image-logo.svg";
-import phoebe from "../../../assets/phoebe.webp";
-import marlyn from "../../../assets/marlyn.webp";
-import grace from "../../../assets/grace.webp";
-import goma from "../../../assets/goma.webp";
-import sheryl from "../../../assets/sheryl.webp";
+import autoasignimg from "../../../assets/funnel-auto-assign-image-logo.svg"
+import phoebe from "../../../assets/phoebe.webp"
+import marlyn from "../../../assets/marlyn.webp"
+import grace from "../../../assets/grace.webp"
+import goma from "../../../assets/goma.webp"
+import sheryl from "../../../assets/sheryl.webp"
 
 const DateTime = () => {
   
@@ -413,4 +409,4 @@ const DateTime = () => {
   );
 };
 
-export default DateTime;
+export default DateTime

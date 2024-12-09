@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { RxCross2 } from "react-icons/rx";
-import emailjs from "emailjs-com"; // Import emailjs-com
+import React, { useState } from "react"
+import { RxCross2 } from "react-icons/rx"
+import emailjs from "emailjs-com"
 
 const SubmitPopup = ({
   toggleSubmitPopup,
@@ -181,4 +181,4 @@ const SubmitPopup = ({
   );
 };
 
-export default SubmitPopup;
+export default SubmitPopup
