@@ -13,25 +13,25 @@ import { useNavigate } from 'react-router-dom';
 import SubmitPopup from './SubmitPopup';
 
 const Homecleaning = () => {
-  
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // Extract necessary state from Redux
-  const { 
-    services, 
-    frequency, 
-    selectedDate, 
-    selectedTime, 
-    duration, 
+  const {
+    services,
+    frequency,
+    selectedDate,
+    selectedTime,
+    duration,
     professionalCount, // Added professionalCount
-    professionals, 
-    material, 
-    totalCost 
+    professionals,
+    material,
+    totalCost
   } = useSelector((state) => state.booking);
 
   const addonsTotalCost = useSelector((state) => state.popularAddons.totalCost);
-  
+
   const currentStep = useSelector((state) => state.step.currentStep); // Access step state
   const [showSubmitPopup, setShowSubmitPopup] = useState(false);
 
@@ -91,8 +91,8 @@ const Homecleaning = () => {
       des: "Home Cleaning"
     },
     {
-      id: 4, 
-      title: "Service Details", 
+      id: 4,
+      title: "Service Details",
       des: (
         <ul>
           {services.map((service) => (
@@ -121,7 +121,7 @@ const Homecleaning = () => {
     {
       id: 7,
       title: "Number of Professionals",
-      des: professionalCount // Use professionalCount
+      des: professionalCount
     },
     {
       id: 8,
@@ -163,7 +163,7 @@ const Homecleaning = () => {
                 {currentStep === 3 && <DateTime />}
                 {/* Next Button */}
                 <div className='py-6'>
-                  <p 
+                  <p
                     className='text-center bg-[#FFD03E] hover:bg-yellow-400 py-3 max-mobile:py-2 rounded-full text-white font-bold cursor-pointer'
                     onClick={handleNextClick}
                   >
@@ -201,7 +201,15 @@ const Homecleaning = () => {
       {showSubmitPopup && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
           <div className="bg-white p-6 rounded-lg max-w-96 w-full">
-            <SubmitPopup toggleSubmitPopup={toggleSubmitPopup} />
+            <SubmitPopup
+              toggleSubmitPopup={toggleSubmitPopup}
+              totalCost={totalCost}
+              bookingDetails={bookingdetails} // Pass bookingdetails prop
+              selectedDate={selectedDate}
+              selectedTime={selectedTime}
+              professionals={professionals}
+            />
+
           </div>
         </div>
       )}
