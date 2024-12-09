@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import BannerImg from "../assets/banner.webp";
-import { FaLocationDot } from "react-icons/fa6";
-import { MdMyLocation } from "react-icons/md";
+import React, { useState } from "react"
+import BannerImg from "../assets/banner.webp"
+import { FaLocationDot } from "react-icons/fa6"
+import { MdMyLocation } from "react-icons/md"
 
 const Banner = () => {
-    const [showPopup, setShowPopup] = useState(false);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [showPopup, setShowPopup] = useState(false)
+    const [searchQuery, setSearchQuery] = useState("")
 
     const handlePopupToggle = () => {
         setShowPopup((prev) => !prev);
-    };
+    }
 
     const handleSearchChange = (e) => {
         setSearchQuery(e.target.value);
-    };
+    }
 
     return (
         <div

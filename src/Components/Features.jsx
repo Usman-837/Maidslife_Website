@@ -38,7 +38,7 @@ const Features = () => {
     return (
         <div className='flex items-center justify-center bg-[#fafafa]'>
             <div className='max-w-container py-12 px-8 text-center'>
-                <h2 className='text-3xl font-bold'>There are so many reasons to love Justlife!</h2>
+                <h2 className='text-3xl font-bold'>There are so many reasons to love Maidslife!</h2>
                 <p className='text-lg mt-4'>Here are the top 4!</p>
                 <div className='pt-12 grid grid-cols-4 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1'>
                     {
