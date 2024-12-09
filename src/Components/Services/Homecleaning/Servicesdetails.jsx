@@ -1,16 +1,24 @@
+// src/components/Servicesdetails.js
+
 import React, { useState, useEffect } from 'react';
 import { BsInfoCircleFill } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
-import { setDuration, setProfessionals, setMaterial, updateTotalCost } from '../../../redux/actions/bookingActions';
+import { 
+    setDuration, 
+    setProfessionalCount, // Import the new action
+    setMaterial, 
+    updateTotalCost 
+} from '../../../redux/actions/bookingActions';
 
 const Servicesdetails = () => {
     const dispatch = useDispatch();
 
     const totalCost = useSelector((state) => state.booking.totalCost); // Access total cost from Redux state
+    const professionalCount = useSelector((state) => state.booking.professionalCount); // Access professional count
 
     // Initial default values
     const [selectedHour, setSelectedHour] = useState(1); // Default: 1 hour
-    const [selectedProfessionals, setSelectedProfessionals] = useState(1); // Default: 1 professional
+    const [selectedProfessionalCount, setSelectedProfessionalCount] = useState(professionalCount); // Initialize with professionalCount
     const [activeMaterial, setActiveMaterial] = useState('No'); // Default: No material
 
     const HOUR_COST = 20; // Cost per hour
@@ -19,32 +27,32 @@ const Servicesdetails = () => {
 
     useEffect(() => {
         // Set initial total cost with default values
-        const initialCost = HOUR_COST + PROFESSIONAL_COST; // 1 hour + 1 professional
+        const initialCost = (selectedHour * HOUR_COST) + (professionalCount * PROFESSIONAL_COST) + (activeMaterial === 'Yes' ? MATERIAL_COST : 0);
         dispatch(updateTotalCost(initialCost));
-        dispatch(setDuration(1)); // Default duration
-        dispatch(setProfessionals(1)); // Default professional count
-        dispatch(setMaterial('No')); // Default material selection
-    }, [dispatch]);
+        dispatch(setDuration(selectedHour)); // Default duration
+        dispatch(setProfessionalCount(selectedProfessionalCount)); // Default professional count
+        dispatch(setMaterial(activeMaterial)); // Default material selection
+    }, [dispatch, selectedHour, professionalCount, selectedProfessionalCount, activeMaterial]);
 
     const handleSetDuration = (id) => {
         setSelectedHour(id); // Update selected hour
-        const updatedCost = id * HOUR_COST + selectedProfessionals * PROFESSIONAL_COST + (activeMaterial === 'Yes' ? MATERIAL_COST : 0);
+        const updatedCost = (id * HOUR_COST) + (professionalCount * PROFESSIONAL_COST) + (activeMaterial === 'Yes' ? MATERIAL_COST : 0);
         dispatch(updateTotalCost(updatedCost)); // Update total cost in Redux
         dispatch(setDuration(id));
     };
 
-    const handleSetProfessionals = (id) => {
-        setSelectedProfessionals(id);
-        const updatedCost = selectedHour * HOUR_COST + id * PROFESSIONAL_COST + (activeMaterial === 'Yes' ? MATERIAL_COST : 0);
+    const handleSetProfessionalCount = (count) => { // Changed parameter to 'count'
+        setSelectedProfessionalCount(count);
+        const updatedCost = (selectedHour * HOUR_COST) + (count * PROFESSIONAL_COST) + (activeMaterial === 'Yes' ? MATERIAL_COST : 0);
         dispatch(updateTotalCost(updatedCost)); // Update total cost in Redux
-        dispatch(setProfessionals(id));
+        dispatch(setProfessionalCount(count)); // Dispatch the new action
     };
 
     const handleSetMaterial = (material) => {
         setActiveMaterial(material); // Update active material
         dispatch(setMaterial(material)); // Update material selection in Redux
 
-        const updatedCost = selectedHour * HOUR_COST + selectedProfessionals * PROFESSIONAL_COST + (material === 'Yes' ? MATERIAL_COST : 0);
+        const updatedCost = (selectedHour * HOUR_COST) + (professionalCount * PROFESSIONAL_COST) + (material === 'Yes' ? MATERIAL_COST : 0);
         dispatch(updateTotalCost(updatedCost)); // Update total cost in Redux
     };
 
@@ -106,8 +114,8 @@ const Servicesdetails = () => {
                     <div
                         key={data.id}
                         className={`w-10 h-10 max-mobile:w-7 max-mobile:h-7 border border-gray-500 rounded-full flex items-center justify-center font-semibold cursor-pointer
-                            ${selectedProfessionals === data.id ? 'bg-[#d9f6ff] border-blue text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
-                        onClick={() => handleSetProfessionals(data.id)}
+                            ${selectedProfessionalCount === data.id ? 'bg-[#d9f6ff] border-blue text-[#00c3ff]' : 'hover:border-[#00c3ff] hover:text-[#00c3ff]'}`}
+                        onClick={() => handleSetProfessionalCount(data.id)} // Pass count instead of id
                     >
                         {data.prof}
                     </div>

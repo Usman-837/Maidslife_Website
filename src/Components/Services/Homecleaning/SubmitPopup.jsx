@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import emailjs from 'emailjs-com';  // Import emailjs-com
+import emailjs from "emailjs-com"; // Import emailjs-com
 
-const SubmitPopup = ({ toggleSubmitPopup, totalCost, bookingDetails }) => {
+const SubmitPopup = ({
+  toggleSubmitPopup,
+  totalCost,
+  bookingDetails,
+  selectedDate,
+  selectedTime,
+  professionals,
+}) => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    contact: '',
-    address: '',
+    name: "",
+    email: "",
+    contact: "",
+    address: "",
   });
 
   const handleChange = (e) => {
@@ -17,82 +24,86 @@ const SubmitPopup = ({ toggleSubmitPopup, totalCost, bookingDetails }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
-    // Ensure totalCost is defined before calling toFixed
-    const formattedTotalCost = totalCost ? totalCost.toFixed(2) : "0.00 AED";
-  
-    // Extract only the necessary details
-    const formattedBookingDetails = bookingDetails
-    .map((item) => {
-      let description;
-  
-      // Check if `des` is JSX (React component)
-      if (React.isValidElement(item.des)) {
-        // Extract text content from JSX children
-        description = item.des.props.children.map((child) =>
-          typeof child === "object"
-            ? `${child.props.children.join("")}`
-            : `${child.join("")}`
-        ).join("\n\n");
-        
-      } else if (typeof item.des === "number") {
-        // Handle numerical `des` directly
-        description = item.des.toString();
-      } else if (typeof item.des === "string" && item.des.trim() !== "") {
-        // Handle string-based `des`
-        description = item.des;
-      } else {
-        // Fallback for missing or invalid `des`
-        description = "Details not available";
-      }
-  
-      return `${item.title} : ${description}`;
-    })
-    .join("\n\n");
-  
-  
-  // Log the formatted output for debugging
-  console.log(formattedBookingDetails);
-  
 
-    // Prepare the email data
+    const formattedTotalCost = totalCost ? totalCost.toFixed(2) : "0.00 AED";
+
+    const formattedBookingDetails = bookingDetails
+      .map((item) => {
+        let description = "Details not available";
+
+        if (React.isValidElement(item.des)) {
+          if (item.title === "Date and Start Time") {
+            description = `${selectedDate ? selectedDate : "No date selected"} ${selectedTime || "No time selected"
+              }`;
+          } else if (item.title === "Service Details" && item.des.props.children) {
+            // Extract service details from React children
+            description = item.des.props.children.map((child) =>
+              typeof child === "object"
+                ? `${child.props.children.join("")}`
+                : `${child.join("")}`
+            ).join("\n\n");
+          }
+          else if (item.des.props && Array.isArray(item.des.props.children)) {
+            description = item.des.props.children
+              .map((child) => (typeof child === "string" ? child : ""))
+              .join("\n");
+          }
+        } else if (typeof item.des === "number") {
+          description = item.des.toString();
+        } else if (typeof item.des === "string" && item.des.trim() !== "") {
+          description = item.des;
+        } else if (item.title === "Name of Professionals") {
+          description = professionals.includes("Auto Assign")
+            ? "Auto Assign"
+            : professionals.length > 0
+              ? professionals.join("")
+              : "N/A";
+        }
+
+        return `${item.title} : ${description}`;
+      }).join("\n\n");
+
+    console.log("Formatted Booking Details:", formattedBookingDetails);
+    console.log("Selected Date:", selectedDate);
+
     const emailData = {
       name: formData.name,
       email: formData.email,
       contact: formData.contact,
       address: formData.address,
-      bookingDetails: formattedBookingDetails,  // Use the simplified details
-      totalCost: `${formattedTotalCost} AED`, // Use formatted totalCost
+      bookingdetails: formattedBookingDetails,
+      totalCost: `${formattedTotalCost} AED`,
     };
-    // Log the email data for debugging
+
     console.log("Sending email data:", emailData);
 
-    // Send email using EmailJS
     emailjs
       .send(
-        'service_9c91f8f',  // Your service ID from EmailJS
-        'template_9unq75t',  // Your template ID from EmailJS
+        "service_9c91f8f", // Replace with your service ID
+        "template_9unq75t", // Replace with your template ID
         emailData,
-        'GYkUsD2PjtM-aUVWJ'  // Your user ID from EmailJS
+        "GYkUsD2PjtM-aUVWJ" // Replace with your user ID
       )
       .then(
         (response) => {
-          console.log('Email sent successfully:', response);
-          alert('Form Submitted Successfully!');
-          toggleSubmitPopup(); // Close the popup after success
+          console.log("Email sent successfully:", response);
+          alert("Form Submitted Successfully!");
+          toggleSubmitPopup();
         },
         (error) => {
-          console.error('Error sending email:', error);
-          alert('There was an error submitting the form. Please check the console for more details.');
+          console.error("Error sending email:", error);
+          alert(
+            "There was an error submitting the form. Please check the console for more details."
+          );
         }
       );
   };
 
   return (
     <div>
-      <div className='flex justify-between'>
+      <div className="flex justify-between">
         <h1 className="text-xl font-semibold mb-4">Submit Your Details</h1>
-        <RxCross2 className='text-2xl font-semibold' onClick={toggleSubmitPopup} />
+        <RxCross2 className="text-2xl font-semibold" onClick={toggleSubmitPopup} />
       </div>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Name */}
@@ -107,7 +118,7 @@ const SubmitPopup = ({ toggleSubmitPopup, totalCost, bookingDetails }) => {
             value={formData.name}
             onChange={handleChange}
             required
-            placeholder='Enter Name'
+            placeholder="Enter Name"
             className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
         </div>
@@ -122,7 +133,7 @@ const SubmitPopup = ({ toggleSubmitPopup, totalCost, bookingDetails }) => {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            placeholder='Enter email'
+            placeholder="Enter email"
             required
             className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
@@ -138,7 +149,7 @@ const SubmitPopup = ({ toggleSubmitPopup, totalCost, bookingDetails }) => {
             name="contact"
             value={formData.contact}
             onChange={handleChange}
-            placeholder='Contact number'
+            placeholder="Contact number"
             required
             className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
@@ -153,7 +164,7 @@ const SubmitPopup = ({ toggleSubmitPopup, totalCost, bookingDetails }) => {
             name="address"
             value={formData.address}
             onChange={handleChange}
-            placeholder='Enter Address'
+            placeholder="Enter Address"
             required
             className="w-full mt-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"
           />
