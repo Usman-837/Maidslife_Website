@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import BannerImg from "../assets/banner.webp"
+import BannerImg from "../assets/banner-3.jpg"
 import { FaLocationDot } from "react-icons/fa6"
 import { MdMyLocation } from "react-icons/md"
 
@@ -17,7 +17,7 @@ const Banner = () => {
 
     return (
         <div
-            className="bg-cover h-96 min-h-[583px] flex flex-col gap-y-6 items-center justify-center max-sm:px-3 mt-20"
+            className="bg-cover h-96 min-h-[700px] flex flex-col gap-y-6 items-center justify-center max-sm:px-3 mt-20"
             style={{
                 backgroundImage: `url(${BannerImg})`,
                 backgroundSize: "cover",
