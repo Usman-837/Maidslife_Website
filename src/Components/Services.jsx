@@ -45,9 +45,9 @@ const Services = () => {
         },
         {
             id: 4,
-            img: accleaning,
-            title: "AC Cleaning at Home",
-            route: "/accleaning"
+            img: menssalon,
+            title: "Premium Men's Salon",
+            route: "/premiummenssalon"
         },
         {
             id: 5,
@@ -55,96 +55,97 @@ const Services = () => {
             title: "Laundry and dry Cleaning",
             route: "/laundryanddrycleaning"
         },
-        {
-            id: 6,
-            img: carcleaning,
-            title: "Car Wash at Home",
-            route: "/carwashathome"
-        },
-        {
-            id: 7,
-            img: malecleaning,
-            title: "Male Cleaning Professionals",
-            route: "/malecleaning"
-        },
-        {
-            id: 8,
-            img: shoecleaning,
-            title: "Shoe Cleaning",
-            route: "/shoecleaning"
-        },
-        {
-            id: 9,
-            img: womensalon,
-            title: "Women's Salon",
-            route: "/womenssalon"
-        },
-        {
-            id: 10,
-            img: womenspa,
-            title: "Women's Spa",
-            route: "/womensspa"
-        }, {
-            id: 11,
-            img: menssalon,
-            title: "Premium Men's Salon",
-            route: "/premiummenssalon"
-        },
-        {
-            id: 12,
-            img: mensspa,
-            title: "Men's Spa",
-            route: "/mensspa"
-        },
-        {
-            id: 13,
-            img: makeup,
-            title: "Makeup",
-            route: "/makeup"
-        },
-        {
-            id: 14,
-            img: haircare,
-            title: "Hair Care",
-            route: "/haircare"
-        },
-        {
-            id: 15,
-            img: nailextension,
-            title: "Nail Extensions",
-            route: "/nailextensions"
-        },
-        {
-            id: 16,
-            img: lashesbrows,
-            title: "Lashes and Brows",
-            route: "/lashesandbrows"
+        // {
+        //     id: 6,
+        //     img: carcleaning,
+        //     title: "Car Wash at Home",
+        //     route: "/carwashathome"
+        // },
+        // {
+        //     id: 7,
+        //     img: malecleaning,
+        //     title: "Male Cleaning Professionals",
+        //     route: "/malecleaning"
+        // },
+        // {
+        //     id: 8,
+        //     img: shoecleaning,
+        //     title: "Shoe Cleaning",
+        //     route: "/shoecleaning"
+        // },
+        // {
+        //     id: 9,
+        //     img: womensalon,
+        //     title: "Women's Salon",
+        //     route: "/womenssalon"
+        // },
+        // {
+        //     id: 10,
+        //     img: womenspa,
+        //     title: "Women's Spa",
+        //     route: "/womensspa"
+        // },
+        // {
+        //     id: 11,
+        //     img: accleaning,
+        //     title: "AC Cleaning at Home",
+        //     route: "/accleaning"
+        // },
+        // {
+        //     id: 12,
+        //     img: mensspa,
+        //     title: "Men's Spa",
+        //     route: "/mensspa"
+        // },
+        // {
+        //     id: 13,
+        //     img: makeup,
+        //     title: "Makeup",
+        //     route: "/makeup"
+        // },
+        // {
+        //     id: 14,
+        //     img: haircare,
+        //     title: "Hair Care",
+        //     route: "/haircare"
+        // },
+        // {
+        //     id: 15,
+        //     img: nailextension,
+        //     title: "Nail Extensions",
+        //     route: "/nailextensions"
+        // },
+        // {
+        //     id: 16,
+        //     img: lashesbrows,
+        //     title: "Lashes and Brows",
+        //     route: "/lashesandbrows"
 
-        },
-        {
-            id: 17,
-            img: spraytanning,
-            title: "Spray Tanning",
-            route: "/spraytanning"
-        },
-        {
-            id: 18,
-            img: handyman,
-            title: "Handyman & Maintenance",
-            route: "/handyman&maintenance"
-        },
-        {
-            id: 19,
-            img: homepainting,
-            title: "Home Painting",
-            route: "/homepainting"
-        },
-        {
-            id: 20,
-            img: watertank,
-            title: "Water Tank Cleaning",
-            route: "/watertankcleaning"
-        }
+        // },
+        // {
+        //     id: 17,
+        //     img: spraytanning,
+        //     title: "Spray Tanning",
+        //     route: "/spraytanning"
+        // },
+        // {
+        //     id: 18,
+        //     img: handyman,
+        //     title: "Handyman & Maintenance",
+        //     route: "/handyman&maintenance"
+        // },
+        // {
+        //     id: 19,
+        //     img: homepainting,
+        //     title: "Home Painting",
+        //     route: "/homepainting"
+        // },
+        // {
+        //     id: 20,
+        //     img: watertank,
+        //     title: "Water Tank Cleaning",
+        //     route: "/watertankcleaning"
+        // }
 
     ]
 
@@ -160,7 +161,7 @@ const Services = () => {
                                 <img
                                     src={data.img}
                                     alt={data.title}
-                                    className="rounded-full w-32 h-32 max-md:w-32 max-md:h-32 max-sm:w-24 max-sm:h-24 object-cover"
+                                    className="rounded-full w-32 h-32 max-md:w-32 max-md:h-32 max-sm:w-24 max-sm:h-24 object-cover hover:border hover:border-blue hover:shadow-2xl hover:z-30 hover:scale-110 transition-transform duration-500"
                                 />
                             </NavLink>
                             <p className="font-bold py-2 max-sm:text-sm">{data.title}</p>

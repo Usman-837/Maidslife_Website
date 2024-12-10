@@ -6,10 +6,10 @@ import Slider from 'react-slick'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa"
 import { BsInfoCircleFill } from "react-icons/bs"
 import Frequency from './Frequency'
-import { 
-    setSelectedDate, 
-    setSelectedTime,
-    setProfessionals,
+import {
+  setSelectedDate,
+  setSelectedTime,
+  setProfessionals,
 } from '../../../redux/actions/bookingActions'
 
 // Import images
@@ -21,10 +21,10 @@ import goma from "../../../assets/goma.webp"
 import sheryl from "../../../assets/sheryl.webp"
 
 const DateTime = () => {
-  
+
   const dispatch = useDispatch();
   const { frequency, selectedDate, selectedTime, professionals, professionalCount } = useSelector((state) => state.booking);
-  
+
   const [showFrequency, setShowFrequency] = useState(false); // State to toggle popup
   const sliderRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -98,11 +98,11 @@ const DateTime = () => {
   // Slider settings for Professionals
   const professionalSettings = {
     dots: true,
-    arrows: false,
+    arrows: true,
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 3000,
     cssEase: 'linear',
     pauseOnHover: true,
@@ -275,44 +275,52 @@ const DateTime = () => {
         {/* Professionals Slider */}
         <div>
           <h4 className='text-lg font-semibold'>Which professional do you prefer?</h4>
-          <Slider {...professionalSettings} className="my-4 pb-4">
-            {/* Auto Assign Card */}
-            <div className="flex items-center justify-center h-full px-2">
-              <div 
-                className={`border rounded-lg p-4 flex flex-col items-center justify-center cursor-pointer ${
-                  selectedProfessionals.includes('Auto Assign') ? 'border-blue bg-[#d9f6ff]' : 'hover:border-blue hover:bg-[#d9f6ff]'
-                }`}
-                onClick={() => handleProfessionalSelect('Auto Assign')}
-              >
-                <img src={autoasignimg} className="rounded-full w-20 h-20 object-cover" alt="Auto Assign" />
-                <div className="flex flex-col gap-y-2 text-center">
-                  <p className="font-semibold text-center pt-2">Auto Assign</p>
-                  <p className="text-sm text-[rgba(0,0,0,.6)]">We'll assign the best professional</p>
-                </div>
-              </div>
+          <div className='relative'>
+            <div className="absolute cursor-pointer top-28 left-[-15px] z-10">
+              <FaChevronLeft className='text-xl max-mobile:text-lg text-blue' />
             </div>
-
-            {ProfessionalCards.map((data) => (
-              <div key={data.id} className="flex items-center justify-center h-full px-2">
-                <div 
-                  className={`border rounded-lg group p-4 flex flex-col items-center justify-center cursor-pointer ${
-                    selectedProfessionals.includes(data.name) ? 'border-blue bg-[#d9f6ff]' : 'hover:border-blue hover:bg-[#d9f6ff]'
-                  }`}
-                  onClick={() => handleProfessionalSelect(data.name)}
+            <Slider {...professionalSettings} className="my-4 pb-4">
+              {/* Auto Assign Card */}
+              <div className="flex items-center justify-center px-2">
+                <div
+                  className={`border rounded-lg p-4 flex flex-col h-[230px] items-center justify-center cursor-pointer ${selectedProfessionals.includes('Auto Assign') ? 'border-blue bg-[#d9f6ff]' : 'hover:border-blue hover:bg-[#d9f6ff]'
+                    }`}
+                  onClick={() => handleProfessionalSelect('Auto Assign')}
                 >
-                  <img src={data.img} className={`rounded-full w-20 h-20 ${selectedProfessionals.includes(data.name) ? 'border-blue' : 'border'} group-hover:border-blue`} alt={data.name} />
+                  <img src={autoasignimg} className="rounded-full w-20 h-20 object-cover" alt="Auto Assign" />
                   <div className="flex flex-col gap-y-2 text-center">
-                    <p className="font-semibold pt-2 text-blue underline text-lg">{data.name}</p>
-                    <p className="text-yellow-400 text-lg flex gap-x-1 items-center justify-center">
-                      <IoStar />
-                      {data.rating}
-                    </p>
-                    <p className="text-sm text-[rgba(0,0,0,.6)]">{data.des}</p>
+                    <p className="font-semibold text-center pt-2">Auto Assign</p>
+                    <p className="text-sm text-[rgba(0,0,0,.6)]">We'll assign the best professional</p>
                   </div>
                 </div>
               </div>
-            ))}
-          </Slider>
+
+              {ProfessionalCards.map((data) => (
+                <div key={data.id} className="flex items-center justify-center h-full px-2">
+                  <div
+                    className={`border rounded-lg group p-4 flex flex-col items-center justify-center cursor-pointer ${selectedProfessionals.includes(data.name) ? 'border-blue bg-[#d9f6ff]' : 'hover:border-blue hover:bg-[#d9f6ff]'
+                      }`}
+                    onClick={() => handleProfessionalSelect(data.name)}
+                  >
+                    <img src={data.img} className={`rounded-full w-20 h-20 ${selectedProfessionals.includes(data.name) ? 'border-blue' : 'border'} group-hover:border-blue`} alt={data.name} />
+                    <div className="flex flex-col gap-y-2 text-center">
+                      <p className="font-semibold pt-2 text-blue underline text-lg">{data.name}</p>
+                      <p className="text-yellow-400 text-lg flex gap-x-1 items-center justify-center">
+                        <IoStar />
+                        {data.rating}
+                      </p>
+                      <p className="text-sm text-[rgba(0,0,0,.6)]">{data.des}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+            <div className="absolute top-28 right-[-16px] cursor-pointer"
+            >
+              <FaChevronRight className='text-xl max-mobile:text-lg text-blue z-10' />
+            </div>
+          </div>
+
           {/* Show a message if no professionals are selected */}
           {selectedProfessionals.length === 0 && (
             <p className='text-red-500 text-sm mt-2'>Please select at least one professional or choose Auto Assign.</p>
@@ -331,7 +339,7 @@ const DateTime = () => {
                 className="absolute top-11 max-mobile:top-9 left-[-15px] max-mobile:left-[-12px] z-10 -translate-y-1/2 cursor-pointer"
                 onClick={() => sliderRef.current.slickPrev()}
               >
-                <FaChevronLeft className='text-xl max-mobile:text-lg' />
+                <FaChevronLeft className='text-xl max-mobile:text-lg text-blue' />
               </div>
             )}
 
@@ -339,9 +347,8 @@ const DateTime = () => {
               {daydatecircle.map((data) => (
                 <div key={data.id} className='flex items-center justify-center gap-x-3'>
                   <div
-                    className={`flex flex-col items-center cursor-pointer p-2 rounded-lg ${
-                      selectedDate === data.fullDate ? 'bg-blue text-white' : 'hover:bg-[#d9f6ff] hover:border-blue'
-                    }`}
+                    className={`flex flex-col items-center cursor-pointer p-2 rounded-lg ${selectedDate === data.fullDate ? 'bg-blue text-white' : 'hover:bg-[#d9f6ff] hover:border-blue'
+                      }`}
                     onClick={() => handleDateClick(data.fullDate)}
                   >
                     <p className={`font-semibold ${selectedDate === data.fullDate ? 'text-white' : 'text-gray-700'} pl-1.5 max-mobile:text-sm`}>{data.day}</p>
@@ -359,7 +366,7 @@ const DateTime = () => {
                 className="absolute top-11 max-mobile:top-9 right-[-15px] max-mobile:right-[-18px] z-10 -translate-y-1/2 cursor-pointer"
                 onClick={() => sliderRef.current.slickNext()}
               >
-                <FaChevronRight className='text-xl max-mobile:text-lg' />
+                <FaChevronRight className='text-xl max-mobile:text-lg text-blue' />
               </div>
             )}
           </div>
@@ -374,9 +381,8 @@ const DateTime = () => {
             {Timecards.map((data) => (
               <div key={data.id} className='pb-3'>
                 <div
-                  className={`w-fit h-10 border rounded-full flex items-center justify-center font-semibold cursor-pointer hover:border-blue hover:text-blue px-4 py-1.5 ${
-                    selectedTime === data.time ? 'border-blue text-blue' : ''
-                  }`}
+                  className={`w-fit h-10 border rounded-full flex items-center justify-center font-semibold cursor-pointer hover:border-blue hover:text-blue px-4 py-1.5 ${selectedTime === data.time ? 'border-blue text-blue' : ''
+                    }`}
                   onClick={() => handleTimeClick(data.time)}
                 >
                   {data.time}
@@ -387,7 +393,7 @@ const DateTime = () => {
         </div>
 
         {/* Booking Cancellation Info */}
-        <div className='mt-4'> 
+        <div className='mt-4'>
           <div className='flex items-center max-sm:items-start justify-center gap-x-2 bg-gray-100 p-4 rounded-lg h-20'>
             <BsInfoCircleFill className="text-gray-600 text-md max-mobile:text-2xl" />
             <p className='text-sm text-gray-500'>
