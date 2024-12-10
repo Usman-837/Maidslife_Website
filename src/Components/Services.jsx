@@ -161,7 +161,7 @@ const Services = () => {
                                 <img
                                     src={data.img}
                                     alt={data.title}
-                                    className="rounded-full w-32 h-32 max-md:w-32 max-md:h-32 max-sm:w-24 max-sm:h-24 object-cover"
+                                    className="rounded-full w-32 h-32 max-md:w-32 max-md:h-32 max-sm:w-24 max-sm:h-24 object-cover hover:border hover:border-blue hover:shadow-2xl hover:z-30 hover:scale-110 transition-transform duration-500"
                                 />
                             </NavLink>
                             <p className="font-bold py-2 max-sm:text-sm">{data.title}</p>
