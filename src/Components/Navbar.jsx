@@ -51,7 +51,7 @@ const Navbar = () => {
                     </div>
 
                     {/* Select Country Box */}
-                    <div className="absolute w-full top-20">
+                    {/* <div className="absolute w-full top-20">
                         <div className="max-w-container w-full px-8 flex justify-end">
                             {
                                 selectcountry ? <div className='max-w-64 w-full flex flex-col gap-y-3 p-4 mt-2.5 rounded-md bg-white shadow-sm shadow-gray-300'>
@@ -77,7 +77,7 @@ const Navbar = () => {
                                 </div> : null
                             }
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>
